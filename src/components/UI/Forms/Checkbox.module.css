@@ -1,0 +1,14 @@
+.checkbox  {
+  background-color: var(--color-tertiary) !important;
+  border: 1px dotted;
+  border-color: var(--color-primary);
+  
+}
+
+.checkbox input:checked {
+  background-color: var(--color-primary);
+}
+
+.checkbox label {
+  color: var(--color-primary);
+}
