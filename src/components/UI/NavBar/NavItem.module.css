@@ -1,0 +1,27 @@
+.nav-item {
+  display: inline-block;
+  /* padding: 1rem; */
+  
+}
+
+.nav-item a {
+  /* line-height: 2em; */
+  text-decoration: none;
+}
+
+.default {
+  background-color: var(--color-primary);
+}
+
+.default a {
+  color: var(--color-tertiary);
+}
+
+.hover {
+
+}
+
+.active {
+
+}
+
