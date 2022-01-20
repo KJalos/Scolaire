@@ -1,6 +1,7 @@
 import { Fragment } from "react/cjs/react.production.min";
 import Footer from "../UI/Footer";
 import Header from "../UI/Header";
+import Container from "./Container";
 
 const Layout = (props) => {
   return (
@@ -8,7 +9,7 @@ const Layout = (props) => {
       {/* Header */}
       <Header />
       {/* Content */}
-      {props.children}
+      <Container>{props.children}</Container>
       {/* Footer */}
       <Footer />
     </Fragment>

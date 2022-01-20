@@ -11,6 +11,9 @@ import Schedule from "./pages/Schedule";
 import Design from "./TestPages/Design";
 
 function App() {
+  // Handle menus
+  
+
   return (
     <Fragment>
       <Layout>
