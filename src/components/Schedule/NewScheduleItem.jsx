@@ -9,7 +9,6 @@ const NewScheduleItem = (props) => {
   const { sendRequest, data, isLoading, err } = useHttp();
   const [enteredTime, setEnteredTime] = useState("07:00");
   const [enteredDescription, setEnteredDescription] = useState("");
-  const { onAddTask } = props;
 
   const handleTimeChange = (event) => {
     setEnteredTime(event.target.value);
@@ -34,7 +33,7 @@ const NewScheduleItem = (props) => {
         dateAdded: new Date().toString(),
       },
     });
-    onAddTask({
+    props.onAddTask({
       id: data.name,
       time: enteredTime,
       description: enteredDescription,
@@ -65,7 +64,7 @@ const NewScheduleItem = (props) => {
       ) : err ? (
         <p>{err.toString()}</p>
       ) : (
-        data && <p>Success</p>
+        data && <p>{/**Success message */}</p>
       )}
     </Fragment>
   );

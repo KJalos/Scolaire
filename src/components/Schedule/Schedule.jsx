@@ -26,10 +26,8 @@ const Schedule = (props) => {
   const handleAddTask = (taskData) => {
     // Add task to list items
     // console.log(taskData);
-    setItems(items=>[
-      ...items,
-      taskData
-    ])
+    setItems(items=>items.concat(taskData));
+    console.log("Added task")
   };
 
   const handleDelete = (id) => {
