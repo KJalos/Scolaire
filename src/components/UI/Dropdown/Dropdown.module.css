@@ -1,13 +1,11 @@
 
 .dropdown {
-  display: inline;
   display: flex;
   flex-direction: column;
   /* width: fit-content; */
   /* position: absolute; */
   /* top:100px; */
   /* left: 0; */
-  
 }
 
 .dropdown a {

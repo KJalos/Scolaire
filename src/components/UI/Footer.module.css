@@ -20,6 +20,11 @@
   width: 300px;
 }
 
+.sitemap li {
+  width: fit-content;
+  height: fit-content;
+}
+
 .sitemap a {
   line-height: 1rem !important;
   padding: 0 !important;
@@ -54,3 +59,9 @@
   width: 250px;
 }
 
+
+@media (max-width:768px) {
+  .logo {
+    visibility: hidden;
+  }
+}

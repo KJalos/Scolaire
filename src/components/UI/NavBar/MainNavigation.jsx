@@ -38,7 +38,7 @@ const MainNavigation = () => {
             Schedule
           </NavItem>
           {/* <NavItem destPath="/groups" active={activeRoute==='/groups'} onChangeRoute={handleChangeRoute}>Groups</NavItem> */}
-          <DropDownButton
+          {/* <DropDownButton
             id={"groupsBtn"}
             active={activeRoute === "/groups" || activeRoute === "/groups/chat"}
             dropdown={
@@ -51,8 +51,8 @@ const MainNavigation = () => {
                   My&nbsp;Groups
                 </NavItem>
                 <NavItem
-                  destPath="/groups"
-                  active={activeRoute === "/groups"}
+                  destPath="/groups/chat"
+                  active={activeRoute === "/groups/chat"}
                   onChangeRoute={handleChangeRoute}
                 >
                   Group&nbsp;Chat
@@ -71,11 +71,11 @@ const MainNavigation = () => {
           </NavItem>
           <ProfileButton
             id="profileBtn"
-            active={activeRoute === "/groups" || activeRoute === "/groups/chat"}
+            active={activeRoute === "/profile" || activeRoute === "/login"}
             dropdown={
               <ProfileDropdown />
             }
-          />
+          /> */}
         </ul>
       </Container>
     </nav>

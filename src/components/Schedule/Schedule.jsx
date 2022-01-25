@@ -4,13 +4,6 @@ import Container from "../Layout/Container";
 import NewScheduleItem from "./NewScheduleItem";
 import ScheduleList from "./ScheduleList";
 
-const DUMMY_ITEMS = [
-  { id: "item1", time: "09:00", description: "Breakfast" },
-  { id: "item2", time: "10:00", description: "Go Jogging" },
-  { id: "item3", time: "12:00", description: "Lunch" },
-  { id: "item4", time: "13:00", description: "Study" },
-];
-
 const Schedule = (props) => {
   const { sendRequest, data, isLoading, err } = useHttp();
   const [items, setItems] = useState([]);
