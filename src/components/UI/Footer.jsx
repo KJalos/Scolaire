@@ -9,7 +9,7 @@ const Footer = () => {
       {/* Sitemap*/}
       <Container className={classes.container}>
         <div className={classes.sitemap}>
-          <NavItem destPath={"/home"}>Home</NavItem>
+          <NavItem destPath={"/"}>Home</NavItem>
           <NavItem destPath={"/schedule"}>Schedule</NavItem>
           <NavItem destPath={"/groups"}>My Groups</NavItem>
           <NavItem destPath={"/groups/chat"}>Group Chat</NavItem>
