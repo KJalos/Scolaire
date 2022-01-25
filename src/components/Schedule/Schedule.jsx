@@ -28,14 +28,7 @@ const Schedule = (props) => {
     console.log(taskData);
   };
 
-  const handleDelete = (id) => {
-    sendRequest(
-      `https://scolaire-project-default-rtdb.firebaseio.com/schedule/${id}.json`,{
-        method:'DELETE'
-      }
-    );
-  }
-
+  
 
   return (
     <main>
@@ -44,7 +37,7 @@ const Schedule = (props) => {
         {/* New Item input form */}
         <NewScheduleItem onAddTask={handleAddTask} />
         {/* Schedule list */}
-        {items.length>0 ? <ScheduleList items={items} onDelete={handleDelete} /> : <p>No items in your schedule</p>}
+        {items.length>0 ? <ScheduleList items={items} /> : <p>No items in your schedule</p>}
       </Container>
     </main>
   );
