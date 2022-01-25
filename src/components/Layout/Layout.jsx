@@ -1,18 +1,18 @@
 import { Fragment } from "react/cjs/react.production.min";
 import Footer from "../UI/Footer";
 import Header from "../UI/Header";
-import Container from "./Container";
+import classes from "./Layout.module.css"
 
 const Layout = (props) => {
   return (
-    <Fragment>
+    <div className={classes.wrapper} >
       {/* Header */}
       <Header />
       {/* Content */}
-      <Container>{props.children}</Container>
+      {props.children}
       {/* Footer */}
       <Footer />
-    </Fragment>
+    </div >
   );
 };
 

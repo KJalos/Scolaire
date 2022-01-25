@@ -10,15 +10,13 @@
 
   background-color: var(--color-primary);
   color: var(--color-tertiary);
-  font-size:1.4rem;
+  /* font-size:1.4rem; */
+  font-size: 1rem;
   padding:0 2rem;
 }
 
-.drop-btn i {
-  margin-left: 1rem;
-}
-
-.drop-btn:hover {
+.drop-btn:hover,
+.drop-open {
   background-color: var(--color-tertiary);
   color: var(--color-primary);
 }
@@ -34,3 +32,8 @@
   color: var(--color-tertiary);
 }
 
+.dropdown {
+  position: absolute;
+  top: 99px;
+  left: 0;
+}

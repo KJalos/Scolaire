@@ -6,25 +6,24 @@ import classes from "./NavItem.module.css";
 const NavItem = (props) => {
   const [state, setState] = useState("default");
 
-  const {active} = props;
-  useEffect(()=>{
+  const { active } = props;
+  useEffect(() => {
     if (active) {
-      setState('active');
+      setState("active");
       // console.log('active')
-    }
-    else {
-      setState('default');
+    } else {
+      setState("default");
       // console.log('defualt')
     }
-  },[active]);
+  }, [active]);
   const handleMouseEnter = () => {
     if (!active) setState("hover");
   };
 
   const handleChangeRoute = () => {
-    setState('default');
-    props.onChangeRoute(props.destPath)
-  }
+    setState("default");
+    props.onChangeRoute(props.destPath);
+  };
 
   const handleMouseLeave = () => {
     if (!active) setState("default");
@@ -41,7 +40,7 @@ const NavItem = (props) => {
       onMouseLeave={handleMouseLeave}
       onClick={handleChangeRoute}
     >
-      <Link to={props.destPath} >{props.children}</Link>
+      <Link to={props.destPath}>{props.children}</Link>
     </li>
   );
 };

@@ -1,0 +1,20 @@
+.item {
+  display: grid;
+  grid-template-columns:  6.25rem 1fr;
+  /* margin: 0 auto; */
+  margin-top: .7rem;
+}
+
+.time,
+.description {
+  padding: .5rem;
+  background-color: rgba(255, 165, 0,.6);
+  /* Dynamically assign color property from component */
+  border-radius: .2rem;
+}
+
+.time {
+  text-align: center;
+  margin-right: .5rem;
+}
+

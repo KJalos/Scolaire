@@ -4,9 +4,9 @@
   display: flex;
   flex-direction: column;
   /* width: fit-content; */
-  position: absolute;
-  top:100px;
-  left: 0;
+  /* position: absolute; */
+  /* top:100px; */
+  /* left: 0; */
   
 }
 
@@ -16,5 +16,4 @@
   width: 200px;
   margin: 0;
   /* display: flex; */
-  border : 1px solid magenta;
 }

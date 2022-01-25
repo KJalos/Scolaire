@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import classes from "./DropdownButton.module.css";
+import classes from "./ProfileButton.module.css";
 
-const DropDownButton = (props) => {
+const ProfileButton = (props) => {
   // const { show: showMenu } = useContext(MenuContext);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [eventAdded, setEventAdded] = useState(false);
@@ -35,19 +35,20 @@ const DropDownButton = (props) => {
   };
 
   return (
-    <button
+    <span
       onClick={handleClick}
-      className={`${classes["drop-btn"]} ${props.className} ${dropdownVisible ? classes['drop-open'] : ''}`}
+      className={`${classes["profile-button"]} ${
+        dropdownVisible ? classes.hover : ""
+      } fas fa-user-circle`}
       ref={ref}
       id={props.id}
     >
-      {props.children}
       {dropdownVisible && (
         <div className={classes["dropdown"]}>{props.dropdown}</div>
       )}
       {/* {dropdownVisible && ReactDOM.createPortal(props.dropdown,document)} */}
-    </button>
+    </span>
   );
 };
 
-export default DropDownButton;
+export default ProfileButton;

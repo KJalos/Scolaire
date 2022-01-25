@@ -1,13 +1,11 @@
-import { Fragment, useEffect } from "react";
-
+import {  useEffect } from "react";
+import ScheduleContent from "../components/Schedule/Schedule"
 
 const Schedule = ()=> {
   useEffect(()=>{
     document.title ="Scolaire | Schedule";
   },[])
-  return <Fragment>
-    <p>In development...</p>
-  </Fragment>
+  return  <ScheduleContent />
 }
 
 export default Schedule;

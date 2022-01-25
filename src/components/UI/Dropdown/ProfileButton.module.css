@@ -1,0 +1,17 @@
+.profile-button {
+  font-size: 3rem;
+  align-self: center;
+  margin-left: 1rem;
+  position: relative;
+}
+
+.profile-button:hover,
+.hover {
+  color: var(--color-secondary);
+}
+
+.dropdown {
+  position: absolute;
+  top: 75px;
+  right: 0;
+}

@@ -5,6 +5,8 @@ import { useState } from "react";
 import Container from "../../Layout/Container";
 import DropDownButton from "../Dropdown/DropdownButton";
 import Dropdown from "../Dropdown/DropDown";
+import ProfileButton from "../Dropdown/ProfileButton";
+import ProfileDropdown from "../Dropdown/ProfileDropdown";
 
 const MainNavigation = () => {
   const [activeRoute, setActiveRoute] = useState("/");
@@ -37,7 +39,7 @@ const MainNavigation = () => {
           </NavItem>
           {/* <NavItem destPath="/groups" active={activeRoute==='/groups'} onChangeRoute={handleChangeRoute}>Groups</NavItem> */}
           <DropDownButton
-            id={'groupsBtn'}
+            id={"groupsBtn"}
             active={activeRoute === "/groups" || activeRoute === "/groups/chat"}
             dropdown={
               <Dropdown className={classes.dropdown}>
@@ -46,60 +48,34 @@ const MainNavigation = () => {
                   active={activeRoute === "/groups"}
                   onChangeRoute={handleChangeRoute}
                 >
-                  My Groups
+                  My&nbsp;Groups
                 </NavItem>
                 <NavItem
                   destPath="/groups"
                   active={activeRoute === "/groups"}
                   onChangeRoute={handleChangeRoute}
                 >
-                  Group Chat
+                  Group&nbsp;Chat
                 </NavItem>
               </Dropdown>
             }
           >
-            Groups <i className={`fas fa-caret-down ${classes.avatar}`}></i>
+            Groups&nbsp;&nbsp;<i className={`fas fa-caret-down ${classes.avatar}`}></i>
           </DropDownButton>
           <NavItem
             destPath="/contact-us"
             active={activeRoute === "/contact-us"}
             onChangeRoute={handleChangeRoute}
           >
-            Contact us
+            Contact&nbsp;us
           </NavItem>
-          <DropDownButton
+          <ProfileButton
             id="profileBtn"
-            className={classes["profile-btn"]}
             active={activeRoute === "/groups" || activeRoute === "/groups/chat"}
             dropdown={
-              <Dropdown className={classes.dropdown}>
-                <NavItem
-                  destPath="/profile"
-                  active={activeRoute === "/profile"}
-                  onChangeRoute={handleChangeRoute}
-                >
-                  My Profile
-                </NavItem>
-                <NavItem
-                  destPath="/logout"
-                  active={activeRoute === "/logout"}
-                  onChangeRoute={handleChangeRoute}
-                >
-                  Logout
-                </NavItem>
-              </Dropdown>
+              <ProfileDropdown />
             }
-          >
-            <i className={`fas fa-user-circle ${classes.avatar}`}></i>
-          </DropDownButton>
-          {/* Development */}
-          {/* <NavItem
-            destPath="/TEST"
-            active={activeRoute === "/TEST"}
-            onChangeRoute={handleChangeRoute}
-          >
-            TEST
-          </NavItem> */}
+          />
         </ul>
       </Container>
     </nav>

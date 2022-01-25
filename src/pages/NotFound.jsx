@@ -1,14 +1,10 @@
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 
-
-const NotFound = ()=> {
-  useEffect(()=>{
-    document.title ="Scolaire | Page not found"
-  },[])
-  return <Fragment>
-    <p>In development...</p>
-  </Fragment>
-}
+const NotFound = () => {
+  useEffect(() => {
+    document.title = "404 | Page not found";
+  }, []);
+  return <h1 className="page-title">404 | Page not found</h1>;
+};
 
 export default NotFound;
-

@@ -1,0 +1,44 @@
+.button {
+  display: inline-block;
+  padding: 0.5rem 2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  color:var(--color-tertiary);
+  width: fit-content;
+}
+
+.btn-default {
+  background-color: var(--color-primary);
+  border:none;
+  color: var(--color-tertiary);
+  filter: drop-shadow(0px 4px 2px rgba(0,0,0,.5));
+}
+
+.btn-default:hover,
+.btn-default:active
+{
+  background-color: var(--color-secondary);
+}
+
+.btn-default:disabled {
+  background-color: var(--color-gray-light)
+}
+
+.btn-outline {
+  border: 2px solid var(--color-primary);
+  background-color: inherit;
+  color:var(--color-primary)
+}
+
+.btn-outline:hover,
+.btn-outline:active {
+  background-color: var(--color-primary);
+  color: var(--color-tertiary);
+}
+
+.btn-outline:disabled {
+  border-color: var(--color-gray-light);
+  color: var(--color-gray-light);
+}
+
