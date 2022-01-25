@@ -12,6 +12,7 @@ const ScheduleList = (props) => {
         method: "DELETE",
       }
     );
+    props.onDelete(id);
   };
 
   const items = props.items.map((item) => {
