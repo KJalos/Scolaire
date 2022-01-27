@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import Container from "../../Layout/Container";
 import DropDownButton from "../Dropdown/DropdownButton";
 import Dropdown from "../Dropdown/DropDown";
-import ProfileButton from "../Dropdown/ProfileButton";
 import ProfileDropdown from "../Dropdown/ProfileDropdown";
 import MenuContext from "../../../store/menu-context";
 import { useLocation } from "react-router-dom";
@@ -37,8 +36,16 @@ const MainNavigation = () => {
     visible:false,
     }
 
+    const profileMenu = {
+      id:PROFILE_MENU_ID,
+      dropdown:<ProfileDropdown />,
+    visible:false,
+    }
+
+    register(profileMenu);
     register(groupMenu);
     return () => {
+      deregister(profileMenu)
       deregister(GROUP_MENU_ID);
     }
   },[register,deregister])
@@ -81,7 +88,8 @@ const MainNavigation = () => {
           >
             Contact&nbsp;us
           </NavItem>
-          <ProfileButton
+          <DropDownButton
+            profile
             id="profileBtn"
             active={activeRoute === "/profile" || activeRoute === "/login"}
             dropdown={<ProfileDropdown />}

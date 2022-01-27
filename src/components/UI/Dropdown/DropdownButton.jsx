@@ -5,17 +5,14 @@ import profileBtnClasses from "./ProfileButton.module.css";
 
 const DropDownButton = (props) => {
   // const { show: showMenu } = useContext(MenuContext);
-  const [dropdownVisible, setDropdownVisible] = useState(false);
   const [eventAdded, setEventAdded] = useState(false);
   const ref = useRef();
   const menuCtx = useContext(MenuContext);
-
+  const { hide } = menuCtx;
   useEffect(() => {
     const listener = (event) => {
       if (event.target !== ref.current) {
-        setDropdownVisible(() => {
-          return false;
-        });
+        hide(props.menuId);
       }
     };
     if (!eventAdded) {
@@ -23,12 +20,12 @@ const DropDownButton = (props) => {
       document.addEventListener("click", listener);
     }
     return () => {
-      document.removeEventListener("click");
+      document.removeEventListener("click", listener);
     };
-  }, [dropdownVisible, eventAdded]);
+  }, [eventAdded, hide, props.menuId]);
 
   const handleClick = () => {
-    setDropdownVisible((curState) => !curState);
+    menuCtx.hide(props.menuId);
     const menu = menuCtx.menus.find((menu) => menu.id === props.menuId);
     if (menu.visible) {
       menuCtx.hide(menu.id);
@@ -47,7 +44,9 @@ const DropDownButton = (props) => {
         <span
           onClick={handleClick}
           className={`${profileBtnClasses["profile-button"]} ${
-            dropdownVisible ? profileBtnClasses.hover : ""
+            menuCtx.menus.find((menu) => menu.id === props.menuId)
+              ? profileBtnClasses.hover
+              : ""
           } fas fa-user-circle`}
           ref={ref}
           id={props.id}
