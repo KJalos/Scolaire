@@ -1,4 +1,4 @@
-.checkbox  {
+.checkbox {
   background-color: var(--color-tertiary) !important;
   /* border: 1px dotted; */
   /* border-color: var(--color-primary); */
@@ -8,18 +8,17 @@
 
 .checkbox input {
   visibility: hidden;
-  
 }
 
 .checkbox::before {
   content: "";
-  
-  position:absolute;
+
+  position: absolute;
   top: 50%;
   left: 0px;
   transform: translateY(-50%);
-  width: .8rem;
-  height: .8rem;
+  width: 0.8rem;
+  height: 0.8rem;
   border: 1px solid var(--color-primary);
   border-radius: 3px;
 }
@@ -39,13 +38,13 @@
   height: .4rem;
 } */
 
-.checked .checkmark{
+.checked .checkmark {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: .1rem;
-  font-size: .7rem;
-  color:var(--color-tertiary);
+  left: 0.1rem;
+  font-size: 0.7rem;
+  color: var(--color-tertiary);
 }
 
 .checkbox label {

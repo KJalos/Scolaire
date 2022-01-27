@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import GroupsContent from "../components/Groups/Groups";
 
 const Groups = ()=> {

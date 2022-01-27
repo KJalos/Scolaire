@@ -1,6 +1,6 @@
 .drop-btn {
   /* line-height: 2em; */
-  position:relative;
+  position: relative;
   border: none;
   padding: 0;
   display: flex;
@@ -12,7 +12,7 @@
   color: var(--color-tertiary);
   /* font-size:1.4rem; */
   font-size: 1rem;
-  padding:0 2rem;
+  padding: 0 2rem;
 }
 
 .drop-btn:hover,
@@ -26,16 +26,8 @@
   color: var(--color-tertiary);
 }
 
-
 .hover:hover {
   background-color: var(--color-primary);
   color: var(--color-tertiary);
 }
 
-.dropdown {
-  position: absolute;
-  top: 99px;
-  left: 0;
-  /* z-index: 30; */
-
-}

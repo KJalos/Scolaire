@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import MenuContext from "../../../store/menu-context";
 import classes from "./DropdownButton.module.css";
+import profileBtnClasses from "./ProfileButton.module.css";
 
 const DropDownButton = (props) => {
   // const { show: showMenu } = useContext(MenuContext);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [eventAdded, setEventAdded] = useState(false);
   const ref = useRef();
-  // console.log(ref.current.id)
+  const menuCtx = useContext(MenuContext);
+
   useEffect(() => {
     const listener = (event) => {
-      console.log("event.target", event.target);
-      console.log("ref", ref.current);
-      console.log("comparison", event.target !== ref.current);
       if (event.target !== ref.current) {
         setDropdownVisible(() => {
           return false;
@@ -20,32 +20,48 @@ const DropDownButton = (props) => {
     };
     if (!eventAdded) {
       setEventAdded(true);
-      console.log("Event added");
       document.addEventListener("click", listener);
     }
-    // console.log(listener);
-    // return () => {
-    //   console.log("Event removed");
-    //   document.removeEventListener("click");
-    //   eventAdded = false;
-    // };
+    return () => {
+      document.removeEventListener("click");
+    };
   }, [dropdownVisible, eventAdded]);
 
   const handleClick = () => {
     setDropdownVisible((curState) => !curState);
+    const menu = menuCtx.menus.find((menu) => menu.id === props.menuId);
+    if (menu.visible) {
+      menuCtx.hide(menu.id);
+    } else {
+      menuCtx.show(menu.id, {
+        right:
+          ref.current.getBoundingClientRect().right - ref.current.offsetWidth,
+        top: ref.current.getBoundingClientRect().bottom + 20,
+      });
+    }
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className={`${classes["drop-btn"]} ${props.className}`}
-      ref={ref}
-      id={props.id}
-    >
-      {props.children}
-      {dropdownVisible && props.dropdown}
-      {/* {dropdownVisible && ReactDOM.createPortal(props.dropdown,document)} */}
-    </button>
+    <>
+      {props.profile ? (
+        <span
+          onClick={handleClick}
+          className={`${profileBtnClasses["profile-button"]} ${
+            dropdownVisible ? profileBtnClasses.hover : ""
+          } fas fa-user-circle`}
+          ref={ref}
+          id={props.id}
+        ></span>
+      ) : (
+        <button
+          onClick={handleClick}
+          className={`${classes["drop-btn"]} ${props.className}`}
+          ref={ref}
+        >
+          {props.children}
+        </button>
+      )}
+    </>
   );
 };
 

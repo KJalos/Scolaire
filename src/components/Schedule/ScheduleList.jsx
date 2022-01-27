@@ -10,9 +10,11 @@ const ScheduleList = (props) => {
       `https://scolaire-project-default-rtdb.firebaseio.com/schedule/${id}.json`,
       {
         method: "DELETE",
+      },
+      () => {
+        props.onDelete(id);
       }
     );
-    props.onDelete(id);
   };
 
   const items = props.items.map((item) => {

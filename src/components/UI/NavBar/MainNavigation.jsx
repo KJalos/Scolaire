@@ -1,19 +1,49 @@
 import Logo from "../../Logo/Logo";
 import NavItem from "./NavItem";
 import classes from "./MainNavigation.module.css";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Container from "../../Layout/Container";
 import DropDownButton from "../Dropdown/DropdownButton";
 import Dropdown from "../Dropdown/DropDown";
 import ProfileButton from "../Dropdown/ProfileButton";
 import ProfileDropdown from "../Dropdown/ProfileDropdown";
+import MenuContext from "../../../store/menu-context";
+import { useLocation } from "react-router-dom";
+
+const GROUP_MENU_ID = "group-menu";
+const PROFILE_MENU_ID = "profile-menu";
 
 const MainNavigation = () => {
-  const [activeRoute, setActiveRoute] = useState("/");
+  const location = useLocation();
+  const activeRoute = location.pathname;
+  const menuCtx = useContext(MenuContext);
 
-  const handleChangeRoute = (route) => {
-    setActiveRoute(route);
-  };
+  const {register, deregister} = menuCtx;
+  useEffect(()=>{
+    const groupMenu = {
+      id:GROUP_MENU_ID,
+      dropdown:<Dropdown className={classes.dropdown} id={GROUP_MENU_ID}>
+      <NavItem
+        destPath="/groups"
+      >
+        My&nbsp;Groups
+      </NavItem>
+      <NavItem
+        destPath="/groups/chat"
+      >
+        Group&nbsp;Chat
+      </NavItem>
+    </Dropdown>,
+    visible:false,
+    }
+
+    register(groupMenu);
+    return () => {
+      deregister(GROUP_MENU_ID);
+    }
+  },[register,deregister])
+
+
 
   return (
     <nav className={`${classes.navbar}`}>
@@ -26,55 +56,35 @@ const MainNavigation = () => {
           <NavItem
             destPath="/"
             active={activeRoute === "/"}
-            onChangeRoute={handleChangeRoute}
           >
             Home
           </NavItem>
           <NavItem
             destPath="/schedule"
             active={activeRoute === "/schedule"}
-            onChangeRoute={handleChangeRoute}
           >
             Schedule
           </NavItem>
           {/* <NavItem destPath="/groups" active={activeRoute==='/groups'} onChangeRoute={handleChangeRoute}>Groups</NavItem> */}
           <DropDownButton
-            id={"groupsBtn"}
+            id={"groupsDropDownBtn"}
+            menuId={GROUP_MENU_ID}
             active={activeRoute === "/groups" || activeRoute === "/groups/chat"}
-            dropdown={
-              <Dropdown className={classes.dropdown}>
-                <NavItem
-                  destPath="/groups"
-                  active={activeRoute === "/groups"}
-                  onChangeRoute={handleChangeRoute}
-                >
-                  My&nbsp;Groups
-                </NavItem>
-                <NavItem
-                  destPath="/groups/chat"
-                  active={activeRoute === "/groups/chat"}
-                  onChangeRoute={handleChangeRoute}
-                >
-                  Group&nbsp;Chat
-                </NavItem>
-              </Dropdown>
-            }
+            dropdownId={GROUP_MENU_ID}
           >
-            Groups&nbsp;&nbsp;<i className={`fas fa-caret-down ${classes.avatar}`}></i>
+            Groups&nbsp;&nbsp;
+            <i className={`fas fa-caret-down ${classes.avatar}`}></i>
           </DropDownButton>
           <NavItem
             destPath="/contact-us"
             active={activeRoute === "/contact-us"}
-            onChangeRoute={handleChangeRoute}
           >
             Contact&nbsp;us
           </NavItem>
           <ProfileButton
             id="profileBtn"
             active={activeRoute === "/profile" || activeRoute === "/login"}
-            dropdown={
-              <ProfileDropdown />
-            }
+            dropdown={<ProfileDropdown />}
           />
         </ul>
       </Container>

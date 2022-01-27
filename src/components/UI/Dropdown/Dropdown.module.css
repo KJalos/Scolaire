@@ -1,17 +1,21 @@
-
 .dropdown {
+  position: fixed;
   display: flex;
   flex-direction: column;
-  /* width: fit-content; */
-  /* position: absolute; */
-  /* top:100px; */
-  /* left: 0; */
+  justify-content: stretch;
+  z-index: 50;
+  
+  top: var(--position-top);
+  left: var(--position-left);
+  bottom: var(--position-bottom);
+  right: var(--position-right);
 }
 
 .dropdown a {
-  /* display: inline-block; */
+  display: inline-block;
   /* padding-right: 5rem; */
-  width: 200px;
   margin: 0;
+  width: 200px;
+  height: 100%;
   /* display: flex; */
 }

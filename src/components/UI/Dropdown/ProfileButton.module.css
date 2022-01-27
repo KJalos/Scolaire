@@ -5,9 +5,7 @@
   /* z-index: 30; */
 }
 
-.profile-button h3
-
-.profile-button:hover,
+.profile-button h3 .profile-button:hover,
 .hover {
   color: var(--color-secondary);
 }

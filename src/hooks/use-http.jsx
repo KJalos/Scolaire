@@ -5,7 +5,7 @@ const useHttp = () => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
-  const sendRequest = useCallback(async (url, reqConfig) => {
+  const sendRequest = useCallback(async (url, reqConfig, successCallback) => {
     setIsLoading(true);
     setError(null);
     const req = reqConfig
@@ -30,19 +30,21 @@ const useHttp = () => {
         res
           .json()
           .then((data) => {
+            
             setData(data);
-            console.log(data);
+            if (successCallback) successCallback(data);
+            // console.log(data);
           })
           .catch((err) => {
             setIsLoading(false);
             setError(err);
-            console.log(err);
+            // console.log(err);
           });
       })
       .catch((err) => {
         setIsLoading(false);
         setError(err);
-        console.log(err);
+        // console.log(err);
       });
   }, []);
 

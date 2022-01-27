@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  grid-template-areas:
+    "t t t t t t"
+    "l l l o o o";
+}
+
+.container h2 {
+  grid-area: t;
+}
+
+.login-form {
+  grid-area: l;
+}
+
+.oauth-form {
+  grid-area: o;
+  margin: 0 auto;
+}
+
+.login-form input {
+  margin-bottom: 1rem;
+}

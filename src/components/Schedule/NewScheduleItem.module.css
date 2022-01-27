@@ -20,12 +20,10 @@
 
 .description-button-container {
   /* flex-grow: 1; */
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .new-item-form button {
-  
   background-color: var(--color-secondary);
   color: var(--color-gray);
-  
 }

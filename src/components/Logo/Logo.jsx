@@ -4,7 +4,7 @@ const Logo = (props) => {
       viewBox="0 0 124 130"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={props.className || ''}
+      className={props.className || ""}
     >
       <g filter="url(#filter0_d_78_875)">
         <path

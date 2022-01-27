@@ -3,17 +3,17 @@ import classes from "./SearchBar.module.css";
 
 const SearchBar = (props) => {
   return (
-    <div className={`${classes['search-bar']} ${props.className}`}>
+    <div className={`${classes["search-bar"]} ${props.className}`}>
       <Input
         type="text"
-        className={classes['search-input']}
+        className={classes["search-input"]}
         placeholder={props.placeholder}
         onChange={props.onChange}
         value={props.value}
       />
-      {props.buttonText && <button className={classes.button}> 
-        {props.buttonText}
-      </button>}
+      {props.buttonText && (
+        <button className={classes.button}>{props.buttonText}</button>
+      )}
     </div>
   );
 };
