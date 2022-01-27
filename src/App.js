@@ -23,7 +23,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/groups" element={<Groups />} />
           <Route path="/schedule" element={<Schedule />} />
-          <Route path="/auth" element={<Authentication />} />
+          <Route path="/auth/*" element={<Authentication />} />
           <Route path="/TEST" element={<Design />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

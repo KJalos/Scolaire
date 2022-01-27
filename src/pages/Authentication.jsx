@@ -1,4 +1,6 @@
 import { Fragment, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import Login from "./Login";
 
 
 const Authentication = ()=> {
@@ -6,7 +8,10 @@ const Authentication = ()=> {
     document.title ="You should not be here"
   },[])
   return <Fragment>
-    <p>In development...</p>
+    <Routes>
+      <Route path="login" element={<Login />} />
+      <Route path="signup" />
+    </Routes>
   </Fragment>
 }
 

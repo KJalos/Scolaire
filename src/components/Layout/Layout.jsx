@@ -9,7 +9,7 @@ const Layout = (props) => {
       {/* Header */}
       <Header />
       {/* Content */}
-      {props.children}
+      <main>{props.children}</main>
       {/* Footer */}
       <Footer />
     </div >

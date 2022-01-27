@@ -9,12 +9,14 @@ const DropDownButton = (props) => {
   // console.log(ref.current.id)
   useEffect(() => {
     const listener = (event) => {
-      if (event.target)
-        if (event.target !== ref.current) {
-          setDropdownVisible(() => {
-            return false;
-          });
-        }
+      console.log("event.target", event.target);
+      console.log("ref", ref.current);
+      console.log("comparison", event.target !== ref.current);
+      if (event.target !== ref.current) {
+        setDropdownVisible(() => {
+          return false;
+        });
+      }
     };
     if (!eventAdded) {
       setEventAdded(true);
@@ -22,7 +24,6 @@ const DropDownButton = (props) => {
       document.addEventListener("click", listener);
     }
     // console.log(listener);
-
     // return () => {
     //   console.log("Event removed");
     //   document.removeEventListener("click");
@@ -37,14 +38,12 @@ const DropDownButton = (props) => {
   return (
     <button
       onClick={handleClick}
-      className={`${classes["drop-btn"]} ${props.className} ${dropdownVisible ? classes['drop-open'] : ''}`}
+      className={`${classes["drop-btn"]} ${props.className}`}
       ref={ref}
       id={props.id}
     >
       {props.children}
-      {dropdownVisible && (
-        <div className={classes["dropdown"]}>{props.dropdown}</div>
-      )}
+      {dropdownVisible && props.dropdown}
       {/* {dropdownVisible && ReactDOM.createPortal(props.dropdown,document)} */}
     </button>
   );
