@@ -1,5 +1,6 @@
 import { Fragment, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import Signup from "../components/Auth/Signup";
 import Login from "./Login";
 
 const Authentication = () => {
@@ -10,7 +11,7 @@ const Authentication = () => {
     <Fragment>
       <Routes>
         <Route path="login" element={<Login />} />
-        <Route path="signup" />
+        <Route path="signup" element={<Signup />} />
       </Routes>
     </Fragment>
   );

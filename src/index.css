@@ -5,14 +5,18 @@
   --color-secondary: #7cd1b8;
   --color-tertiary: #fff;
   --color-gray: #303030;
-  --color-gray-light:#c0c0c0;
+  --color-gray-light:#909090;
   --color-light-bg:#f1f1f3;
+  --color-light-bg-aplha:rgba(241, 241, 243,.5);
 }
 
 #root {
   height: 100vh;
 }
 
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -26,9 +30,16 @@ header {
   z-index: 20;
 }
 
-* {
-  box-sizing: border-box;
+main {
+  max-width: 100%;
 }
+
+/* section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
 
 h1,h2,h3,h4,h5,h6 {
   color: var(--color-primary);
@@ -38,9 +49,7 @@ p {
   color: var(--color-gray);
 }
 
-main {
-  max-width: 100%;
-}
+
 
 
 /* 

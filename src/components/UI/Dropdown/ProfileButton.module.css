@@ -1,18 +1,24 @@
-.profile-button {
-  font-size: 3rem;
+.profile-btn {
   align-self: center;
   margin-left: 1rem;
-  /* z-index: 30; */
+  border: 1px solid magenta;
+  padding: 0;
+  align-self: stretch;
 }
 
-.profile-button h3 .profile-button:hover,
-.hover {
+.profile-btn:hover {
+  background-color: var(--color-primary);
+}
+
+.profile-btn svg {
+  width: 2.5rem;
+}
+
+.profile-btn.active svg, .profile-btn svg:hover {
   color: var(--color-secondary);
 }
 
-.dropdown {
-  position: absolute;
-  top: 99px;
-  right: 0;
-  /* z-index: 30; */
+.profile-btn h3 .profile-btn:hover,
+.hover {
+  color: var(--color-secondary);
 }

@@ -1,13 +1,14 @@
 import Logo from "../../Logo/Logo";
 import NavItem from "./NavItem";
 import classes from "./MainNavigation.module.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Container from "../../Layout/Container";
 import DropDownButton from "../Dropdown/DropdownButton";
 import Dropdown from "../Dropdown/DropDown";
 import ProfileDropdown from "../Dropdown/ProfileDropdown";
 import MenuContext from "../../../store/menu-context";
 import { useLocation } from "react-router-dom";
+import UserAvatar from "../../Profile/UserAvatar"
 
 const GROUP_MENU_ID = "group-menu";
 const PROFILE_MENU_ID = "profile-menu";
@@ -17,40 +18,32 @@ const MainNavigation = () => {
   const activeRoute = location.pathname;
   const menuCtx = useContext(MenuContext);
 
-  const {register, deregister} = menuCtx;
-  useEffect(()=>{
+  const { register, deregister } = menuCtx;
+  useEffect(() => {
     const groupMenu = {
-      id:GROUP_MENU_ID,
-      dropdown:<Dropdown className={classes.dropdown} id={GROUP_MENU_ID}>
-      <NavItem
-        destPath="/groups"
-      >
-        My&nbsp;Groups
-      </NavItem>
-      <NavItem
-        destPath="/groups/chat"
-      >
-        Group&nbsp;Chat
-      </NavItem>
-    </Dropdown>,
-    visible:false,
-    }
+      id: GROUP_MENU_ID,
+      dropdown: (
+        <Dropdown className={classes.dropdown} id={GROUP_MENU_ID}>
+          <NavItem destPath="/groups">My&nbsp;Groups</NavItem>
+          <NavItem destPath="/groups/chat">Group&nbsp;Chat</NavItem>
+        </Dropdown>
+      ),
+      visible: false,
+    };
 
     const profileMenu = {
-      id:PROFILE_MENU_ID,
-      dropdown:<ProfileDropdown />,
-    visible:false,
-    }
+      id: PROFILE_MENU_ID,
+      dropdown: <ProfileDropdown />,
+      visible: false,
+    };
 
     register(profileMenu);
     register(groupMenu);
     return () => {
-      deregister(profileMenu)
+      deregister(profileMenu);
       deregister(GROUP_MENU_ID);
-    }
-  },[register,deregister])
-
-
+    };
+  }, [register, deregister]);
 
   return (
     <nav className={`${classes.navbar}`}>
@@ -60,16 +53,10 @@ const MainNavigation = () => {
           <h1 className={classes.name}>Scolaire</h1>
         </div>
         <ul className={`${classes["nav-items"]}`}>
-          <NavItem
-            destPath="/"
-            active={activeRoute === "/"}
-          >
+          <NavItem destPath="/" active={activeRoute === "/"}>
             Home
           </NavItem>
-          <NavItem
-            destPath="/schedule"
-            active={activeRoute === "/schedule"}
-          >
+          <NavItem destPath="/schedule" active={activeRoute === "/schedule"}>
             Schedule
           </NavItem>
           {/* <NavItem destPath="/groups" active={activeRoute==='/groups'} onChangeRoute={handleChangeRoute}>Groups</NavItem> */}
@@ -93,7 +80,9 @@ const MainNavigation = () => {
             id="profileBtn"
             active={activeRoute === "/profile" || activeRoute === "/login"}
             dropdown={<ProfileDropdown />}
-          />
+          >
+            <UserAvatar />
+          </DropDownButton>
         </ul>
       </Container>
     </nav>

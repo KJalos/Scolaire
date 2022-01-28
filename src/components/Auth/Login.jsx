@@ -1,7 +1,7 @@
 import Container from "../Layout/Container";
 import Button from "../UI/Forms/Button";
 import Input from "../UI/Forms/Input";
-import classes from "./Login.module.css";
+import classes from "../UI/Forms/Forms.module.css";
 import OAuthButtons from "./OAuthButtons";
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
   return (
     <Container className={classes.container}>
       <h2>Login</h2>
-      <form className={classes["login-form"]} onSubmit={handleSubmit}>
+      <form className={classes.form} onSubmit={handleSubmit}>
         <Input
           label="Username or Email"
           type="text"

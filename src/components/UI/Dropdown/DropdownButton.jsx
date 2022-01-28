@@ -1,28 +1,32 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import MenuContext from "../../../store/menu-context";
+import UserAvatar from "../../Profile/UserAvatar";
 import classes from "./DropdownButton.module.css";
 import profileBtnClasses from "./ProfileButton.module.css";
 
+let eventAdded = false;
+
 const DropDownButton = (props) => {
   // const { show: showMenu } = useContext(MenuContext);
-  const [eventAdded, setEventAdded] = useState(false);
   const ref = useRef();
   const menuCtx = useContext(MenuContext);
-  const { hide } = menuCtx;
+  const { hideAll } = menuCtx;
   useEffect(() => {
     const listener = (event) => {
       if (event.target !== ref.current) {
-        hide(props.menuId);
+        console.log("Clicked outside");
+        hideAll();
       }
     };
     if (!eventAdded) {
-      setEventAdded(true);
+      eventAdded = true;
       document.addEventListener("click", listener);
     }
     return () => {
       document.removeEventListener("click", listener);
+      eventAdded = false;
     };
-  }, [eventAdded, hide, props.menuId]);
+  }, [hideAll]);
 
   const handleClick = () => {
     menuCtx.hide(props.menuId);
@@ -33,34 +37,19 @@ const DropDownButton = (props) => {
       menuCtx.show(menu.id, {
         right:
           ref.current.getBoundingClientRect().right - ref.current.offsetWidth,
-        top: ref.current.getBoundingClientRect().bottom + 20,
+        top: ref.current.getBoundingClientRect().bottom + 5,
       });
     }
   };
 
   return (
-    <>
-      {props.profile ? (
-        <span
-          onClick={handleClick}
-          className={`${profileBtnClasses["profile-button"]} ${
-            menuCtx.menus.find((menu) => menu.id === props.menuId)
-              ? profileBtnClasses.hover
-              : ""
-          } fas fa-user-circle`}
-          ref={ref}
-          id={props.id}
-        ></span>
-      ) : (
-        <button
-          onClick={handleClick}
-          className={`${classes["drop-btn"]} ${props.className}`}
-          ref={ref}
-        >
-          {props.children}
-        </button>
-      )}
-    </>
+    <button
+      onClick={!props.profile && handleClick}
+      className={`${classes["drop-btn"]} ${props.profile ? profileBtnClasses["profile-btn"] : ''} ${props.className}`}
+      ref={ref}
+    >
+      {props.profile ? <UserAvatar onClick={handleClick} ref={ref} /> :props.children}
+    </button>
   );
 };
 

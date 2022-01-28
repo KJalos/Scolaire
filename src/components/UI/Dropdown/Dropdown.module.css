@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: stretch;
   z-index: 50;
-  
+
   top: var(--position-top);
   left: var(--position-left);
   bottom: var(--position-bottom);
@@ -13,9 +13,13 @@
 
 .dropdown a {
   display: inline-block;
-  /* padding-right: 5rem; */
+  background: var(--color-primary);
   margin: 0;
-  width: 200px;
+  width: 150px;
   height: 100%;
-  /* display: flex; */
+  line-height: 3.5rem;
+}
+
+.dropdown a:hover {
+  background-color: var(--color-tertiary);
 }

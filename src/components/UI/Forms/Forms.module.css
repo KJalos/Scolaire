@@ -2,15 +2,17 @@
   display: grid;
   grid-template-areas:
     "t t t t t t"
-    "l l l o o o";
+    "f f f o o o";
 }
 
 .container h2 {
   grid-area: t;
 }
 
-.login-form {
-  grid-area: l;
+.form {
+  grid-area: f;
+  display: flex;
+  flex-direction: column;
 }
 
 .oauth-form {
@@ -18,6 +20,11 @@
   margin: 0 auto;
 }
 
-.login-form input {
+.form input {
   margin-bottom: 1rem;
+}
+
+.form button {
+  margin-top: 1rem;
+  width: 100%;
 }
