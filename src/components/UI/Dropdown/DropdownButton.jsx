@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import MenuContext from "../../../store/menu-context";
 import UserAvatar from "../../Profile/UserAvatar";
 import classes from "./DropdownButton.module.css";
@@ -45,10 +45,16 @@ const DropDownButton = (props) => {
   return (
     <button
       onClick={!props.profile && handleClick}
-      className={`${classes["drop-btn"]} ${props.profile ? profileBtnClasses["profile-btn"] : ''} ${props.className}`}
+      className={`${classes["drop-btn"]} ${
+        props.profile ? profileBtnClasses["profile-btn"] : ""
+      } ${props.className}`}
       ref={ref}
     >
-      {props.profile ? <UserAvatar onClick={handleClick} ref={ref} /> :props.children}
+      {props.profile ? (
+        <UserAvatar onClick={handleClick} ref={ref} />
+      ) : (
+        props.children
+      )}
     </button>
   );
 };

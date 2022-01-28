@@ -81,7 +81,7 @@ const MainNavigation = () => {
             active={activeRoute === "/profile" || activeRoute === "/login"}
             dropdown={<ProfileDropdown />}
           >
-            <UserAvatar />
+            
           </DropDownButton>
         </ul>
       </Container>

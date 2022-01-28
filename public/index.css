@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Mulish:wght@400;700;900&display=swap");
+
+:root {
+  --color-primary: #3e8e7e;
+  --color-secondary: #7cd1b8;
+  --color-tertiary: #fff;
+  --color-gray: #303030;
+  --color-gray-light:#909090;
+  --color-light-bg:#f1f1f3;
+  --color-light-bg-aplha:rgba(241, 241, 243,.5);
+}
+
+#root {
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Mulish";
+  font-size: 18px;
+  background-color: var(--color-light-bg);
+}
+
+header {
+  position: relative;
+  z-index: 20;
+}
+
+main {
+  max-width: 100%;
+}
+
+/* section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
+
+h1,h2,h3,h4,h5,h6 {
+  color: var(--color-primary);
+}
+
+p {
+  color: var(--color-gray);
+}
+
+
+
+
+/* 
+a {
+  color: var(--color-primary);
+}
+
+a:hover,
+a:active {
+  color: var(--color-secondary);
+} */
