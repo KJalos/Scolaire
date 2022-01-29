@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import classes from "./NavItem.module.css";
 
 const NavItem = (props) => {
   const [state, setState] = useState("default");
-
-  const { active } = props;
+  const location = useLocation();
+  const active = location.pathname === props.destPath;
   useEffect(() => {
     if (active) {
       setState("active");
@@ -15,6 +15,7 @@ const NavItem = (props) => {
       setState("default");
       // console.log('defualt')
     }
+    // console.log("EFFECT RUNNING");
   }, [active]);
   const handleMouseEnter = () => {
     if (!active) setState("hover");
@@ -22,7 +23,6 @@ const NavItem = (props) => {
 
   const handleChangeRoute = () => {
     setState("default");
-    props.onChangeRoute(props.destPath);
   };
 
   const handleMouseLeave = () => {

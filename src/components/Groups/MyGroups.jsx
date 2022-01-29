@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import useHttp from "../../hooks/use-http";
 import Container from "../Layout/Container";
 import SearchBar from "../UI/Forms/SearchBar";
@@ -36,7 +36,11 @@ const MyGroups = () => {
         />
       </form>
       {/* Group List */}
-      {groups.length>0 ? <GroupList groups={groups} /> : <p>No groups found...</p>}
+      {groups.length > 0 ? (
+        <GroupList groups={groups} />
+      ) : (
+        <p>No groups found...</p>
+      )}
     </div>
   );
 };

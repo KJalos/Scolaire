@@ -1,5 +1,5 @@
 .form-control {
-  display:flex;
+  display: flex;
   flex-direction: column;
   color: var(--color-primary);
 }
@@ -8,23 +8,24 @@
 .form-control textarea {
   border: none;
   box-shadow: inset 0px 2px 2px 1px rgba(0, 0, 0, 0.25);
-  padding: .3rem;
+  padding: 0.3rem;
   border-radius: 5px;
   /* color: var(--color-primary); */
   font-size: 1rem;
 }
 
 .form-control textarea {
-  resize: none1;
+  resize: none;
+  height: 150px;
 }
 
-.form-control textarea:focus,
-.form-control input:focus {
+.form-control input:focus,
+.form-control textarea:focus {
   outline: 1px solid var(--color-primary);
 }
 
 .form-control textarea::placeholder,
 .form-control input::placeholder {
   color: var(--color-gray);
-  opacity: .8;
+  opacity: 0.8;
 }

@@ -1,9 +1,11 @@
 import MainNavigation from "./NavBar/MainNavigation";
 
 const Header = (props) => {
-  return <header>
+  return (
+    <header>
       <MainNavigation />
     </header>
-}
+  );
+};
 
 export default Header;

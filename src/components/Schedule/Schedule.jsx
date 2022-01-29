@@ -26,13 +26,13 @@ const Schedule = (props) => {
   const handleAddTask = (taskData) => {
     // Add task to list items
     // console.log(taskData);
-    setItems(items=>items.concat(taskData));
-    console.log("Added task")
+    setItems((items) => items.concat(taskData));
+    console.log("Added task");
   };
 
   const handleDelete = (id) => {
-    setItems(items=>items.filter(item=>item.id!==id));
-  }
+    setItems((items) => items.filter((item) => item.id !== id));
+  };
 
   return (
     <main>
@@ -41,7 +41,11 @@ const Schedule = (props) => {
         {/* New Item input form */}
         <NewScheduleItem onAddTask={handleAddTask} />
         {/* Schedule list */}
-        {items.length>0 ? <ScheduleList items={items} onDelete={handleDelete} /> : <p>No items in your schedule</p>}
+        {items.length > 0 ? (
+          <ScheduleList items={items} onDelete={handleDelete} />
+        ) : (
+          <p>No items in your schedule</p>
+        )}
       </Container>
     </main>
   );

@@ -5,7 +5,6 @@
   color: var(--color-tertiary);
   overflow: hidden;
   position: relative;
-  
 }
 
 .container {
@@ -30,7 +29,6 @@
   padding: 0 !important;
 }
 
-
 .contact-details {
   padding: 0 2rem;
   position: relative;
@@ -39,7 +37,7 @@
 
 .contact-details h3,
 .contact-details p {
-  color: var(--color-tertiary)
+  color: var(--color-tertiary);
 }
 
 .copy {
@@ -59,8 +57,7 @@
   width: 250px;
 }
 
-
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .logo {
     visibility: hidden;
   }

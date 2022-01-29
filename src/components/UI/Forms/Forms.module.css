@@ -1,0 +1,30 @@
+.container {
+  display: grid;
+  grid-template-areas:
+    "t t t t t t"
+    "f f f o o o";
+}
+
+.container h2 {
+  grid-area: t;
+}
+
+.form {
+  grid-area: f;
+  display: flex;
+  flex-direction: column;
+}
+
+.oauth-form {
+  grid-area: o;
+  margin: 0 auto;
+}
+
+.form input {
+  margin-bottom: 1rem;
+}
+
+.form button {
+  margin-top: 1rem;
+  width: 100%;
+}

@@ -1,8 +1,5 @@
-
 const GroupList = () => {
-  return <ul>
-    {/* GroupList Items */}
-  </ul>
-}
+  return <ul>{/* GroupList Items */}</ul>;
+};
 
 export default GroupList;

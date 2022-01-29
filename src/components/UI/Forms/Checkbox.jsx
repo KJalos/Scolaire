@@ -1,6 +1,5 @@
 import { useState } from "react";
 import classes from "./Checkbox.module.css";
-import formClasses from "./Form.module.css";
 
 const Checkbox = (props) => {
   const [checked, setIsChecked] = useState(false);
@@ -9,9 +8,9 @@ const Checkbox = (props) => {
     setIsChecked((curVal) => !curVal);
   };
 
-  const componentClasses = `${formClasses["form-control"]} ${
+  const componentClasses = `${
     classes.checkbox
-  } ${props.className || ""} ${checked ? classes.checked : ""}`;
+  } ${checked ? classes.checked : ""} ${props.className || ""}`;
 
   return (
     <div className={componentClasses} onClick={handleClick}>

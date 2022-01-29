@@ -1,0 +1,24 @@
+.oauth-form {
+  display: flex;
+  /* align-items: stretch; */
+  flex-direction: column;
+  width: 300px;
+  padding: 1rem;
+}
+
+.oauth-form > * {
+  margin-bottom: 0.7rem;
+}
+
+.google {
+  background-color: #fff;
+}
+
+.facebook {
+  background-color: rgb(66 103 178);
+  color: #fff;
+}
+
+.github {
+  background-color: #fff;
+}

@@ -6,7 +6,7 @@
   width: 100%;
   top:0;
   left: 0;
-  
+  transition: background-color .3s ease-out;
 }
 
 .navbar-container {
@@ -50,7 +50,6 @@
 }
 
 .profile-btn{
-  padding: 0 !important;
   align-self: center;
   line-height: 1em;
   /* width: fit-content !important; */

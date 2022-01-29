@@ -28,10 +28,9 @@
 }
 
 .about-container {
-  display:flex;
+  display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
-  
 }
 
 .about img {
@@ -39,10 +38,11 @@
 }
 
 .about .body {
-  padding:0 5rem;
+  padding: 0 5rem;
   width: 50%;
 }
 
-.about h2,.about img {
-  padding-top:5rem;
+.about h2,
+.about img {
+  padding-top: 5rem;
 }

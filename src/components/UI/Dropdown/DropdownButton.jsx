@@ -1,51 +1,60 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import MenuContext from "../../../store/menu-context";
+import UserAvatar from "../../Profile/UserAvatar";
 import classes from "./DropdownButton.module.css";
+import profileBtnClasses from "./ProfileButton.module.css";
+
+let eventAdded = false;
 
 const DropDownButton = (props) => {
   // const { show: showMenu } = useContext(MenuContext);
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [eventAdded, setEventAdded] = useState(false);
   const ref = useRef();
-  // console.log(ref.current.id)
+  const menuCtx = useContext(MenuContext);
+  const { hideAll } = menuCtx;
   useEffect(() => {
     const listener = (event) => {
-      if (event.target)
-        if (event.target !== ref.current) {
-          setDropdownVisible(() => {
-            return false;
-          });
-        }
+      if (event.target !== ref.current) {
+        console.log("Clicked outside");
+        hideAll();
+      }
     };
     if (!eventAdded) {
-      setEventAdded(true);
-      console.log("Event added");
+      eventAdded = true;
       document.addEventListener("click", listener);
     }
-    // console.log(listener);
-
-    // return () => {
-    //   console.log("Event removed");
-    //   document.removeEventListener("click");
-    //   eventAdded = false;
-    // };
-  }, [dropdownVisible, eventAdded]);
+    return () => {
+      document.removeEventListener("click", listener);
+      eventAdded = false;
+    };
+  }, [hideAll]);
 
   const handleClick = () => {
-    setDropdownVisible((curState) => !curState);
+    menuCtx.hide(props.menuId);
+    const menu = menuCtx.menus.find((menu) => menu.id === props.menuId);
+    if (menu.visible) {
+      menuCtx.hide(menu.id);
+    } else {
+      menuCtx.show(menu.id, {
+        right:
+          ref.current.getBoundingClientRect().right - ref.current.offsetWidth,
+        top: ref.current.getBoundingClientRect().bottom + 5,
+      });
+    }
   };
 
   return (
     <button
-      onClick={handleClick}
-      className={`${classes["drop-btn"]} ${props.className} ${dropdownVisible ? classes['drop-open'] : ''}`}
+      onClick={!props.profile && handleClick}
+      className={`${classes["drop-btn"]} ${
+        props.profile ? profileBtnClasses["profile-btn"] : ""
+      } ${props.className}`}
       ref={ref}
-      id={props.id}
     >
-      {props.children}
-      {dropdownVisible && (
-        <div className={classes["dropdown"]}>{props.dropdown}</div>
+      {props.profile ? (
+        <UserAvatar onClick={handleClick} ref={ref} />
+      ) : (
+        props.children
       )}
-      {/* {dropdownVisible && ReactDOM.createPortal(props.dropdown,document)} */}
     </button>
   );
 };

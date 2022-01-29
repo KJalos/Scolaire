@@ -1,4 +1,5 @@
-import { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
+import ReactDOM from "react-dom";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Authentication from "./pages/Authentication";
@@ -8,12 +9,13 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Schedule from "./pages/Schedule";
+import MenuContext from "./store/menu-context";
 import Design from "./TestPages/Design";
 
 function App() {
   // Handle menus
+  const {menus} = useContext(MenuContext);
   
-
   return (
     <Fragment>
       <Layout>
@@ -23,11 +25,12 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/groups" element={<Groups />} />
           <Route path="/schedule" element={<Schedule />} />
-          <Route path="/auth" element={<Authentication />} />
+          <Route path="/auth/*" element={<Authentication />} />
           <Route path="/TEST" element={<Design />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
+      {menus.map(menu=>menu.visible&&ReactDOM.createPortal(menu.dropdown,document.getElementById("overlays")))}
     </Fragment>
   );
 }

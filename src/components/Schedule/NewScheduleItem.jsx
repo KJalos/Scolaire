@@ -25,19 +25,25 @@ const NewScheduleItem = (props) => {
     // //TODO replace schedule.json with <userId>.json
     const url =
       "https://scolaire-project-default-rtdb.firebaseio.com/schedule.json";
-    await sendRequest(url, {
-      method: "POST",
-      body: {
-        time: enteredTime,
-        description: enteredDescription,
-        dateAdded: new Date().toString(),
+    await sendRequest(
+      url,
+      {
+        method: "POST",
+        body: {
+          time: enteredTime,
+          description: enteredDescription,
+          dateAdded: new Date().toString(),
+        },
       },
-    });
-    props.onAddTask({
-      id: data.name,
-      time: enteredTime,
-      description: enteredDescription,
-    });
+      (data) => {
+        props.onAddTask({
+          id: data.name,
+          time: enteredTime,
+          description: enteredDescription,
+        });
+      }
+    );
+    console.log("Before call");
   };
 
   return (
@@ -52,7 +58,7 @@ const NewScheduleItem = (props) => {
           value={enteredTime}
         />
         <SearchBar
-        className={classes['description-button-container']}
+          className={classes["description-button-container"]}
           placeholder="Add new Task"
           onChange={handleDescriptionChange}
           value={enteredDescription}
