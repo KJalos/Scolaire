@@ -26,7 +26,7 @@ const useHttp = () => {
         if (!res.ok) {
           throw new Error("Request Failed");
         }
-        console.log(res);
+        // console.log(res);
         res
           .json()
           .then((data) => {

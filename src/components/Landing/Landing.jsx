@@ -27,7 +27,7 @@ const Landing = () => {
               Vagon suprakenar: en krogåse. Fänera orade desmani. Krosm kaharen.
               Tin laling. Dörad iligen. Diacentrism kropevis lans. Sakeheten
               vynde. Autorade brorsantrick. Lalingar pres, nett. Manar bengen.
-              Henavis.{" "}
+              Henavis.
             </p>
           </div>
           <img

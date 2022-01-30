@@ -1,9 +1,9 @@
 .profile-btn {
   align-self: center;
   margin-left: 1rem;
-  border: 1px solid magenta;
   padding: 0;
   align-self: stretch;
+  fill: var(--color-tertiary);
 }
 
 .profile-btn:hover {
@@ -12,10 +12,12 @@
 
 .profile-btn svg {
   width: 2.5rem;
+  height: 2.5rem;
 }
 
-.profile-btn.active svg, .profile-btn svg:hover {
-  color: var(--color-secondary);
+.profile-btn.active svg,
+.profile-btn svg:hover {
+  fill: var(--color-secondary);
 }
 
 .profile-btn h3 .profile-btn:hover,

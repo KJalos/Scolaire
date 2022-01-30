@@ -11,7 +11,7 @@
   height: 100%;
   /* line-height: 2rem; */
   line-height: 96px;
-  padding: 0 2rem;
+  padding: 0 .7rem;
   /* background-color: var(--color-primary); */
   color: var(--color-tertiary);
 }

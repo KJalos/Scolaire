@@ -8,7 +8,6 @@ import Dropdown from "../Dropdown/DropDown";
 import ProfileDropdown from "../Dropdown/ProfileDropdown";
 import MenuContext from "../../../store/menu-context";
 import { useLocation } from "react-router-dom";
-import UserAvatar from "../../Profile/UserAvatar"
 
 const GROUP_MENU_ID = "group-menu";
 const PROFILE_MENU_ID = "profile-menu";
@@ -29,18 +28,20 @@ const MainNavigation = () => {
         </Dropdown>
       ),
       visible: false,
+      whitelist: [],
     };
 
     const profileMenu = {
       id: PROFILE_MENU_ID,
-      dropdown: <ProfileDropdown />,
+      dropdown: <ProfileDropdown id={PROFILE_MENU_ID} />,
       visible: false,
+      whitelist: [],
     };
 
     register(profileMenu);
     register(groupMenu);
     return () => {
-      deregister(profileMenu);
+      deregister(PROFILE_MENU_ID);
       deregister(GROUP_MENU_ID);
     };
   }, [register, deregister]);
@@ -65,6 +66,10 @@ const MainNavigation = () => {
             menuId={GROUP_MENU_ID}
             active={activeRoute === "/groups" || activeRoute === "/groups/chat"}
             dropdownId={GROUP_MENU_ID}
+            dropdownOffset={{
+              top: 5,
+              left: 0,
+            }}
           >
             Groups&nbsp;&nbsp;
             <i className={`fas fa-caret-down ${classes.avatar}`}></i>
@@ -78,11 +83,17 @@ const MainNavigation = () => {
           <DropDownButton
             profile
             id="profileBtn"
-            active={activeRoute === "/profile" || activeRoute === "/login"}
-            dropdown={<ProfileDropdown />}
-          >
-            
-          </DropDownButton>
+            menuId={PROFILE_MENU_ID}
+            active={
+              activeRoute === "/profile" ||
+              activeRoute === "/login" ||
+              activeRoute === "/signup"
+            }
+            dropdownOffset={{
+              top: 5,
+              right: 0,
+            }}
+          ></DropDownButton>
         </ul>
       </Container>
     </nav>
