@@ -9,13 +9,27 @@ const Footer = () => {
       {/* Sitemap*/}
       <Container className={classes.container}>
         <div className={classes.sitemap}>
-          <NavItem destPath={"/"}>Home</NavItem>
-          <NavItem destPath={"/schedule"}>Schedule</NavItem>
-          <NavItem destPath={"/groups"}>My Groups</NavItem>
-          <NavItem destPath={"/groups/chat"}>Group Chat</NavItem>
-          <NavItem destPath={"/contact-us"}>Contact us</NavItem>
-          <NavItem destPath={"/profile"}>My Profile</NavItem>
-          <NavItem destPath={"/logout"}>Logout</NavItem>
+          <NavItem destPath={"/"} dropElement>
+            Home
+          </NavItem>
+          <NavItem destPath={"/schedule"} dropElement>
+            Schedule
+          </NavItem>
+          <NavItem destPath={"/groups"} dropElement>
+            My Groups
+          </NavItem>
+          <NavItem destPath={"/groups/chat"} dropElement>
+            Group Chat
+          </NavItem>
+          <NavItem destPath={"/contact-us"} dropElement>
+            Contact us
+          </NavItem>
+          <NavItem destPath={"/profile"} dropElement>
+            My Profile
+          </NavItem>
+          <NavItem destPath={"/logout"} dropElement>
+            Logout
+          </NavItem>
         </div>
         {/* Contact details */}
         <div className={classes["contact-details"]}>

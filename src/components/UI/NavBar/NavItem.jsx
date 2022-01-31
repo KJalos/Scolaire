@@ -8,7 +8,7 @@ const NavItem = (props) => {
   const location = useLocation();
   const active = location.pathname === props.destPath;
   useEffect(() => {
-    if (active) {
+    if (active && !props.dropElement) {
       setState("active");
       // console.log('active')
     } else {
@@ -18,7 +18,7 @@ const NavItem = (props) => {
     // console.log("EFFECT RUNNING");
   }, [active]);
   const handleMouseEnter = () => {
-    if (!active) setState("hover");
+    if (!active || props.dropElement) setState("hover");
   };
 
   const handleChangeRoute = () => {
@@ -26,7 +26,7 @@ const NavItem = (props) => {
   };
 
   const handleMouseLeave = () => {
-    if (!active) setState("default");
+    if (!active || props.dropElement) setState("default");
   };
 
   // console.log("Rendering")

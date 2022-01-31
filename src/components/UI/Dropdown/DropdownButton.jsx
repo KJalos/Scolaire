@@ -27,10 +27,10 @@ const DropDownButton = (props) => {
       } else {
         // console.log("showing menu", menu);
         hideAll();
-        console.log(menu.id, ref.current.getBoundingClientRect());
-        console.log(
-          ref.current.getBoundingClientRect().right + props.dropdownOffset.right
-        );
+        // console.log(menu.id, ref.current.getBoundingClientRect());
+        // console.log(
+        //   ref.current.getBoundingClientRect().right + props.dropdownOffset.right
+        // );
         show(menu.id, {
           left:
             ref.current.getBoundingClientRect().left +
@@ -51,10 +51,11 @@ const DropDownButton = (props) => {
       menu,
       hide,
       hideAll,
-      show,
-      props.dropdownOffset.left,
       props.dropdownOffset.right,
+      props.dropdownOffset.left,
       props.dropdownOffset.top,
+      props.dropdownOffset.bottom,
+      show,
     ]
   );
 

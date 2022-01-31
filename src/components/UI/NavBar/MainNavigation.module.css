@@ -54,12 +54,17 @@
   /* background-color: var(--color-primary); */
 }
 
+.hamburger {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .nav-items {
-    visibility: hidden;
-  }
+  display: none;
+}
 
   .hamburger {
-    visibility: true;
+    display: inline-block;
+
   }
 }
