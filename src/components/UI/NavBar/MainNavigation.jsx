@@ -26,8 +26,12 @@ const MainNavigation = () => {
       id: GROUP_MENU_ID,
       dropdown: (
         <Dropdown className={classes.dropdown} id={GROUP_MENU_ID}>
-          <NavItem destPath="/groups" dropElement>My&nbsp;Groups</NavItem>
-          <NavItem destPath="/groups/chat" dropElement>Group&nbsp;Chat</NavItem>
+          <NavItem destPath="/groups" dropElement>
+            My&nbsp;Groups
+          </NavItem>
+          <NavItem destPath="/groups/chat" dropElement>
+            Group&nbsp;Chat
+          </NavItem>
         </Dropdown>
       ),
       visible: false,
@@ -43,7 +47,7 @@ const MainNavigation = () => {
 
     const hamburgerMenu = {
       id: HAMBURGER_MENU_ID,
-      dropdown: <HamburgerDropdown id={HAMBURGER_MENU_ID} />,
+      dropdown: <HamburgerDropdown id={HAMBURGER_MENU_ID} nestedDropdowns={{ groupId: GROUP_MENU_ID }} />,
       visible: false,
       whitelist: [],
     };
@@ -100,11 +104,18 @@ const MainNavigation = () => {
             }}
           ></DropDownButton>
         </ul>
-        <DropDownButton id={"hamburgerBtn"} menuId={HAMBURGER_MENU_ID} dropdownOffset={{
-          top:0,
-          right:0,
-        }}>
-          <Hamburger className={classes.hamburger} menuId={HAMBURGER_MENU_ID} />
+        <DropDownButton
+          id={"hamburgerBtn"}
+          menuId={HAMBURGER_MENU_ID}
+          dropdownOffset={{
+            top: 0,
+            right: 0,
+          }}
+        >
+          <Hamburger
+            className={classes.hamburger}
+            menuId={HAMBURGER_MENU_ID}
+          />
         </DropDownButton>
       </Container>
     </nav>

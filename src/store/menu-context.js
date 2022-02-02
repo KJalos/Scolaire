@@ -10,6 +10,8 @@ const initState = {
   getMenu: (id) => {},
   whitelistElement: (menuId, element) => {},
   blacklistElement: (menuId, element) => {},
+  whitelistElementRec: (menuId, element) => {},
+  blacklistElementRec: (menuId, element) => {},
 };
 
 const MenuContext = React.createContext(initState);
@@ -32,7 +34,7 @@ const menuReducer = (state, action) => {
         menus: [...state.menus, action.menu],
       };
     case SHOW:
-      console.log("Show menu:", action.id);
+      //console.log("Show menu:", action.id);
       return {
         ...state,
         menus: state.menus.map((menu) => {
@@ -69,7 +71,7 @@ const menuReducer = (state, action) => {
         menus: state.menus.filter((menu) => menu.id !== action.id),
       };
     case ADD_EXEMPT:
-      // console.log("Whitelisting", action.element);
+      // //console.log("Whitelisting", action.element);
       return {
         ...state,
         menus: state.menus.map((menu) => {
@@ -81,7 +83,7 @@ const menuReducer = (state, action) => {
         }),
       };
     case REMOVE_EXEMPT:
-      // console.log("Blacklisting", action.element);
+      // //console.log("Blacklisting", action.element);
       return {
         ...state,
         menus: state.menus.map((menu) => {
@@ -110,6 +112,8 @@ export function MenuContextProvider(props) {
     getMenu: handleGetMenu,
     whitelistElement: handleWhitelistElement,
     blacklistElement: handleBlacklistElement,
+    whitelistElementRec: handleWhitelistElementRec,
+    blacklistElementRec: handleBlacklistElementRec,
   });
 
   function handleRegister(menu) {
@@ -152,6 +156,7 @@ export function MenuContextProvider(props) {
   }
 
   function handleWhitelistElement(menuId, element) {
+    //console.log("Whitelisting",element,"in",menuId);
     dispatch({
       type: ADD_EXEMPT,
       menuId,
@@ -160,11 +165,38 @@ export function MenuContextProvider(props) {
   }
 
   function handleBlacklistElement(menuId, element) {
+    //console.log("Blacklisting",element,"in",menuId);
     dispatch({
       type: REMOVE_EXEMPT,
       menuId,
       element,
     });
+  }
+
+  function handleWhitelistElementRec(menuId, element) {
+    const children = element.children;
+
+    if (children) {
+      // Recursively whitelist children
+      for (let i = 0; i < children.length; i++) {
+        handleWhitelistElementRec(menuId, children[i]);
+      }
+    }
+
+    handleWhitelistElement(menuId, element);
+  }
+
+  function handleBlacklistElementRec(menuId, element) {
+    const children = element.children;
+
+    if (children) {
+      // Recursively whitelist children
+      for (let i = 0; i < children.length; i++) {
+        handleBlacklistElementRec(menuId, children[i]);
+      }
+    }
+
+    handleBlacklistElement(menuId, element);
   }
 
   return (

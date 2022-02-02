@@ -43,7 +43,7 @@ const NewScheduleItem = (props) => {
         });
       }
     );
-    console.log("Before call");
+    //console.log("Before call");
   };
 
   return (

@@ -5,15 +5,15 @@ import classes from "./Dropdown.module.css";
 const Dropdown = (props) => {
   const menuCtx = useContext(MenuContext);
   const menu = menuCtx.menus.find((menu) => menu.id === props.id);
-  // console.log(menu);
-  // console.log(window.innerWidth);
-  // console.log(window.innerHeight);
+  // //console.log(menu);
+  // //console.log(window.innerWidth);
+  // //console.log(window.innerHeight);
   useEffect(() => {
     if (menu.visible) {
       const menuElement = document.getElementById(menu.id);
-      // console.log(menuElement);
+      // //console.log(menuElement);
       if (menu.position) {
-        console.log(menu.id, "Postion", menu.position);
+        //console.log(menu.id, "Postion", menu.position);
         if (menu.position.left) {
           menuElement.style.setProperty(
             "--position-left",

@@ -26,25 +26,25 @@ const useHttp = () => {
         if (!res.ok) {
           throw new Error("Request Failed");
         }
-        // console.log(res);
+        // //console.log(res);
         res
           .json()
           .then((data) => {
             
             setData(data);
             if (successCallback) successCallback(data);
-            // console.log(data);
+            // //console.log(data);
           })
           .catch((err) => {
             setIsLoading(false);
             setError(err);
-            // console.log(err);
+            // //console.log(err);
           });
       })
       .catch((err) => {
         setIsLoading(false);
         setError(err);
-        // console.log(err);
+        // //console.log(err);
       });
   }, []);
 

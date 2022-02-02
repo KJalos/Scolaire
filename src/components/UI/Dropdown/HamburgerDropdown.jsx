@@ -4,6 +4,7 @@ import DropDownButton from "./DropdownButton";
 import classes from "./HamburgerDropdown.module.css"
 
 const HamburgerDropdown = (props) => {
+  console.log(props.nestedDropdowns)
   return (
     <Dropdown id={props.id} className={classes["hamburger-dropdown"]}>
       <NavItem destPath={"/"} dropElement>
@@ -14,13 +15,13 @@ const HamburgerDropdown = (props) => {
       </NavItem>
       <DropDownButton
         id={"groupsDropDownBtn"}
-        menuId={props.id}
-        dropdownId={props.id}
+        menuId={props.nestedDropdowns.groupId}
         dropdownOffset={{
           top: 0,
           left: 0,
         }}
         dropElement
+        parentDropdownId={props.id}
       >
         Groups
       </DropDownButton>

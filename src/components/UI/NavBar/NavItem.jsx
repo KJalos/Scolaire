@@ -10,12 +10,12 @@ const NavItem = (props) => {
   useEffect(() => {
     if (active && !props.dropElement) {
       setState("active");
-      // console.log('active')
+      // //console.log('active')
     } else {
       setState("default");
-      // console.log('defualt')
+      // //console.log('defualt')
     }
-    // console.log("EFFECT RUNNING");
+    // //console.log("EFFECT RUNNING");
   }, [active]);
   const handleMouseEnter = () => {
     if (!active || props.dropElement) setState("hover");
@@ -29,7 +29,7 @@ const NavItem = (props) => {
     if (!active || props.dropElement) setState("default");
   };
 
-  // console.log("Rendering")
+  // //console.log("Rendering")
   // Figure out why it renders an extra time
   return (
     <li

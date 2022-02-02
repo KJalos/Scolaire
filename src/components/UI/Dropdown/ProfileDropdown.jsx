@@ -3,7 +3,7 @@ import Dropdown from "./DropDown";
 import classes from "./ProfileDropdown.module.css";
 
 const ProfileDropdown = (props) => {
-  // console.log("PROPS:",props);
+  // //console.log("PROPS:",props);
   return (
     <Dropdown className={classes.dropdown} id={props.id}>
       <p className={classes.username}>Username</p>

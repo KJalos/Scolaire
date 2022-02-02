@@ -15,22 +15,25 @@ const DropDownButton = (props) => {
   const ref = useRef();
   const profileBtnRef = useRef();
   const menuCtx = useContext(MenuContext);
-  const { whitelistElement, blacklistElement, hide, show, hideAll } = menuCtx;
+  const { whitelistElementRec, blacklistElementRec, hide, show, hideAll } =
+    menuCtx;
   const menu = menuCtx.menus.find((menu) => menu.id === props.menuId);
+  // //console.log(menu);
+  // //console.log(props.menuId);
   const [elementsWhitelisted, setElementsWhitelisted] = useState(false);
+  const [nestedElementsWhitelisted, setNestedElementsWhitelisted] =
+    useState(false);
+  // console.log("Parent", props.parentDropdownId);
+  // console.log("Button", ref.current);
+  const { profile: isProfileBtn, parentDropdownId } = props;
 
   const handleClick = useCallback(
     (event) => {
       if (menu && menu.visible) {
-        // console.log("hiding menu", menu);
         hide(menu.id);
       } else {
-        // console.log("showing menu", menu);
-        hideAll();
-        // console.log(menu.id, ref.current.getBoundingClientRect());
-        // console.log(
-        //   ref.current.getBoundingClientRect().right + props.dropdownOffset.right
-        // );
+        if (!parentDropdownId) hideAll();
+        else console.log(props.menuId)
         show(menu.id, {
           left:
             ref.current.getBoundingClientRect().left +
@@ -50,56 +53,51 @@ const DropDownButton = (props) => {
     [
       menu,
       hide,
+      parentDropdownId,
       hideAll,
-      props.dropdownOffset.right,
+      show,
       props.dropdownOffset.left,
+      props.dropdownOffset.right,
       props.dropdownOffset.top,
       props.dropdownOffset.bottom,
-      show,
     ]
   );
 
-  const { profile: isProfileBtn } = props;
   useEffect(() => {
-    // TODO check whether element has changed
-
     if (!elementsWhitelisted && menu) {
       if (ref.current) {
-        //iterate through all children (including nested children) of button
-        (function whitelistChidlren(element) {
-          if (element.children.length > 0) {
-            const children = element.children;
-            for (let i = 0; i < children.length; i++) {
-              whitelistChidlren(children[i]);
-            }
-          }
-          whitelistElement(props.menuId, element);
-          // console.log("click event added on:", element);
-          // console.log("Children", element.children);
-        })(ref.current);
+        whitelistElementRec(props.menuId, ref.current);
       }
       setElementsWhitelisted(true);
+    }
+
+    if (!nestedElementsWhitelisted) {
+      if (ref.current) {
+        if (parentDropdownId) {
+          console.log("Parent", parentDropdownId);
+          console.log(ref.current);
+          whitelistElementRec(parentDropdownId, ref.current);
+          console.log(
+            menuCtx.menus.find((menu) => menu.id === parentDropdownId)
+          );
+        }
+        setNestedElementsWhitelisted(true);
+      }
     }
     if (isProfileBtn)
       profileBtnRef.current.addEventListener("click", handleClick);
     else ref.current.addEventListener("click", handleClick);
 
     return () => {
-      // blacklistElement(menu.id,ref.current);
-      // blacklistElement(menu.id,profileContainer.current);
       if (ref.current && elementsWhitelisted) {
-        //iterate through all children (including nested children) of button
-        (function blacklistChildren(element) {
-          if (element.children.length > 0) {
-            const children = element.children;
-            for (let i = 0; i < children.length; i++) {
-              blacklistChildren(children[i]);
-            }
-          }
-          blacklistElement(props.menuId, element);
-          // console.log("click event removed from:", element);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        blacklistElementRec(props.menuId, ref.current);
+        if (parentDropdownId) {
+          console.log("Parent", parentDropdownId);
+          console.log(ref.current);
           // eslint-disable-next-line react-hooks/exhaustive-deps
-        })(ref.current);
+          blacklistElementRec(parentDropdownId, ref.current);
+        }
         setElementsWhitelisted(false);
       }
       if (isProfileBtn) {
@@ -108,19 +106,30 @@ const DropDownButton = (props) => {
           profileBtnRef.current.removeEventListener("click", handleClick);
       } else if (ref.current)
         ref.current.removeEventListener("click", handleClick);
+      if (nestedElementsWhitelisted) {
+        if (ref.current) {
+          if (parentDropdownId) {
+            console.log("Parent", parentDropdownId);
+            console.log(ref.current);
+            whitelistElementRec(parentDropdownId, ref.current);
+            setNestedElementsWhitelisted(false);
+          }
+        }
+      }
     };
   }, [
     menu,
-    whitelistElement,
+    whitelistElementRec,
     ref,
     props.menuId,
-    blacklistElement,
+    blacklistElementRec,
     hide,
     show,
     hideAll,
     elementsWhitelisted,
     isProfileBtn,
     handleClick,
+    parentDropdownId,
   ]);
 
   return (
