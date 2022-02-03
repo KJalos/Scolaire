@@ -12,6 +12,7 @@ const initState = {
   blacklistElement: (menuId, element) => {},
   whitelistElementRec: (menuId, element) => {},
   blacklistElementRec: (menuId, element) => {},
+  cleanupMenu: (menuId) => {},
 };
 
 const MenuContext = React.createContext(initState);
@@ -114,6 +115,7 @@ export function MenuContextProvider(props) {
     blacklistElement: handleBlacklistElement,
     whitelistElementRec: handleWhitelistElementRec,
     blacklistElementRec: handleBlacklistElementRec,
+    cleanupMenu:handleCleanupMenu
   });
 
   function handleRegister(menu) {
@@ -139,6 +141,7 @@ export function MenuContextProvider(props) {
   }
 
   function handleHideAll() {
+    console.log("Hiding all");
     dispatch({
       type: HIDE_ALL,
     });
@@ -182,7 +185,7 @@ export function MenuContextProvider(props) {
         handleWhitelistElementRec(menuId, children[i]);
       }
     }
-
+    // console.log("Whitelisting:",element,"to",menuId);
     handleWhitelistElement(menuId, element);
   }
 
@@ -195,8 +198,31 @@ export function MenuContextProvider(props) {
         handleBlacklistElementRec(menuId, children[i]);
       }
     }
-
+    // console.log("Blacklisting:",element,"from",menuId);
     handleBlacklistElement(menuId, element);
+  }
+
+  function handleCleanupMenu(menuId) {
+    const menu = contextValue.menus.find((menu) => menuId === menu.id);
+
+    for (let i = 0; i < menu.whitelist.length; i++) {
+      let elementFoundInDoc = false;
+      (function checkChildren(element) {
+        const children = element.children;
+        if (children) {
+          for (let j = 0; j < children.length; j++) {
+            checkChildren(children[j]);
+          }
+        }
+        if (element === menu.whitelist[i]) {
+          elementFoundInDoc = true;
+        }
+      })(document);
+
+      if (!elementFoundInDoc) {
+        handleBlacklistElementRec(menuId, menu.whitelist[i]);
+      }
+    }
   }
 
   return (

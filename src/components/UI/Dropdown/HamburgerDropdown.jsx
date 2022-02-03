@@ -1,10 +1,11 @@
 import NavItem from "../NavBar/NavItem";
+import Collapse from "./Collapse";
 import Dropdown from "./DropDown";
 import DropDownButton from "./DropdownButton";
-import classes from "./HamburgerDropdown.module.css"
+import classes from "./HamburgerDropdown.module.css";
 
 const HamburgerDropdown = (props) => {
-  console.log(props.nestedDropdowns)
+  console.log(props.nestedDropdowns);
   return (
     <Dropdown id={props.id} className={classes["hamburger-dropdown"]}>
       <NavItem destPath={"/"} dropElement>
@@ -13,18 +14,17 @@ const HamburgerDropdown = (props) => {
       <NavItem destPath={"/schedule"} dropElement>
         Schedule
       </NavItem>
-      <DropDownButton
-        id={"groupsDropDownBtn"}
-        menuId={props.nestedDropdowns.groupId}
-        dropdownOffset={{
-          top: 0,
-          left: 0,
-        }}
-        dropElement
-        parentDropdownId={props.id}
+      <Collapse
+        menuId={props.id}
+        elements={
+          <>
+            <NavItem destPath="/groups">My Groups</NavItem>
+            <NavItem destPath="/groups/chat">Chat</NavItem>
+          </>
+        }
       >
         Groups
-      </DropDownButton>
+      </Collapse>
       <NavItem destPath={"/contact-us"} dropElement>
         Contact us
       </NavItem>

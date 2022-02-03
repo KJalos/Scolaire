@@ -22,30 +22,24 @@ function App() {
   //console.log(menus)
   useEffect(() => {
     const listener = (event) => {
-      if (
-        menus.reduce((result, menu) => {
-          //console.log("Menu", menu.id, "whitelist:", menu.whitelist);
-          return (
-            result ||
-            (menu.visible &&
-              !menu.whitelist.reduce((isExempt, element) => {
-                //console.log(
-                //   "Clicked",
-                //   event.target,
-                //   "\nTarget",
-                //   element,
-                //   "\nPrev Value",
-                //   isExempt
-                // );
-                //console.log("New value", event.target === element);
-                return isExempt || event.target === element;
-              }, false))
-          );
-        }, false)
-      ) {
-        // //console.log("Clicked outside");
-        //console.log("Clicked:", event.target);
-        //console.log("Hiding Menus");
+      let targetIsExempt = false;
+      let hasVisibleMenu =false;
+      for (let i = 0; i < menus.length; i++) {
+        if (menus[i].visible) {
+          hasVisibleMenu = true;
+          // console.log(menus[i].id,"is visible.");
+          // console.log("Clicked element:",event.target);
+          // console.log("Menu whitelist",menus[i].whitelist);
+          for (let j = 0; j < menus[i].whitelist.length; j++) {
+            // console.log("Comparison with",menus[i].whitelist[j],":",event.target===menus[i][j]);
+            if (event.target===menus[i].whitelist[j]) {
+              targetIsExempt = true;
+            }
+          }
+        }
+      }
+      if (!targetIsExempt && hasVisibleMenu) {
+        console.log("Conditions met to close all menus")
         hideAll();
       }
     };
