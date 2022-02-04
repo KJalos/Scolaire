@@ -1,5 +1,5 @@
 .hamburger {
-  width: 3rem;
+  width: 2.8rem;
   height: 2rem;
   position: relative;
   cursor: pointer;
@@ -34,7 +34,7 @@
 
 .open .bar:nth-child(1) {
   display: absolute;
-  transform: rotate(-45deg) translateY(-50%);
+  transform: rotate(-40deg) translateY(-50%);
   top: 50%;
 }
 .open .bar:nth-child(2) {
@@ -42,6 +42,6 @@
 }
 .open .bar:nth-child(3) {
   display: absolute;
-  transform: rotate(45deg) translateY(50%);
+  transform: rotate(40deg) translateY(50%);
   bottom: 50%;
 }

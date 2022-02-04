@@ -6,7 +6,7 @@ const Button = (props) => {
       onClick={props.onClick}
       className={`${classes.button} ${
         classes[props.outline ? "btn-outline" : "btn-default"]
-      }`}
+      } ${props.className || ''}`}
       disabled={props.disabled}
     >
       {props.children}

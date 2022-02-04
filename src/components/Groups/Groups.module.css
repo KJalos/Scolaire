@@ -1,4 +1,18 @@
 .container {
-  display: flex;
+  padding-right: 0;
+  height: 100%;
   justify-content: space-between;
+  position: relative;
+}
+
+.container > div:first-child{
+  width: 60%;
+  padding: 2rem;
+}
+
+.container > div:last-child{
+  flex-grow: 2;
+  position: absolute;
+  top: 5rem;
+  right: 0;
 }

@@ -3,6 +3,7 @@ import useHttp from "../../hooks/use-http";
 import Container from "../Layout/Container";
 import NewScheduleItem from "./NewScheduleItem";
 import ScheduleList from "./ScheduleList";
+import defaultPageStyles from "../Layout/DefaultPageStyles.module.css"
 
 const Schedule = (props) => {
   const { sendRequest, data, isLoading, err } = useHttp();
@@ -35,8 +36,7 @@ const Schedule = (props) => {
   };
 
   return (
-    <main>
-      <Container>
+      <Container className={defaultPageStyles["main-container"]}>
         <h2>Schedule</h2>
         {/* New Item input form */}
         <NewScheduleItem onAddTask={handleAddTask} />
@@ -47,7 +47,6 @@ const Schedule = (props) => {
           <p>No items in your schedule</p>
         )}
       </Container>
-    </main>
   );
 };
 

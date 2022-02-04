@@ -24,7 +24,7 @@ const Collapse = (props) => {
     }
   },[props.menuId, whitelistElementRec, ref, cleanupMenu])
 
-  return <div className={`${!isExpanded ? classes.collapse : ''} ${props.className || ''}`} >
+  return <div className={`${!isExpanded ? classes.collapse : classes.open} ${props.className || ''}`} >
     <button onClick={handleClick} className={classes.control} ref={ref}>{props.children}<span className={classes.caret}>&#9660;</span></button>
     <div className={classes['elements-container']}>
       {props.elements}

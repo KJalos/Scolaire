@@ -30,5 +30,5 @@
 .hamburger,.hamburger:hover {
   padding: 0;
   background-color: var(--color-primary);
-  height: 100% !important;
+  height: 100%;
 }
