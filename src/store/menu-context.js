@@ -76,11 +76,13 @@ const menuReducer = (state, action) => {
       return {
         ...state,
         menus: state.menus.map((menu) => {
-          menu.whitelist =
-            menu.id === action.menuId
-              ? [...menu.whitelist, action.element]
-              : menu.whitelist;
-          return menu;
+          return {
+            ...menu,
+            whitelist:
+              menu.id === action.menuId
+                ? [...menu.whitelist, action.element]
+                : menu.whitelist,
+          };
         }),
       };
     case REMOVE_EXEMPT:
@@ -115,7 +117,7 @@ export function MenuContextProvider(props) {
     blacklistElement: handleBlacklistElement,
     whitelistElementRec: handleWhitelistElementRec,
     blacklistElementRec: handleBlacklistElementRec,
-    cleanupMenu:handleCleanupMenu
+    cleanupMenu: handleCleanupMenu,
   });
 
   function handleRegister(menu) {
@@ -204,7 +206,8 @@ export function MenuContextProvider(props) {
 
   function handleCleanupMenu(menuId) {
     const menu = contextValue.menus.find((menu) => menuId === menu.id);
-
+    // console.log(contextValue);
+    // console.log(menuId,menu);
     for (let i = 0; i < menu.whitelist.length; i++) {
       let elementFoundInDoc = false;
       (function checkChildren(element) {

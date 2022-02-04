@@ -1,6 +1,6 @@
 .hamburger-dropdown button,
 .hamburger-dropdown {
   background-color: var(--color-primary);
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   text-align: left;
 }

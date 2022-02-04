@@ -1,4 +1,29 @@
+.elements-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .collapse .elements-container {
   height: 0;
   display: none;
+}
+
+.control {
+  font-size: 1rem;
+  width: 100%;
+  padding: 1rem .7rem;
+  border:none;
+  color:var(--color-tertiary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.control:hover,
+.control:active {
+  color:var(--color-primary);
+  background-color: var(--color-tertiary);
+}
+
+.caret {
+
 }
