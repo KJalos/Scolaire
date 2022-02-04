@@ -3,6 +3,7 @@
   flex-direction: column;
 }
 
+
 .collapse .elements-container {
   height: 0;
   display: none;
@@ -14,6 +15,7 @@
   padding: 1rem .7rem;
   border:none;
   color:var(--color-tertiary);
+  background-color: inherit;
   display: flex;
   justify-content: space-between;
 }
@@ -25,5 +27,5 @@
 }
 
 .caret {
-
+  transform: scaleY(.5);
 }

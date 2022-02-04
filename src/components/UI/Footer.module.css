@@ -24,9 +24,17 @@
   height: fit-content;
 }
 
+.sitemap li:hover {
+  background-color: var(--color-primary);
+}
+
 .sitemap a {
-  line-height: 1rem !important;
-  padding: 0 !important;
+  line-height: 1rem;
+  padding: 0;
+}
+
+.sitemap a:hover {
+  color: var(--color-secondary);
 }
 
 .contact-details {

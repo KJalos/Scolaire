@@ -13,20 +13,28 @@ const NavItem = (props) => {
       // //console.log('active')
     } else {
       setState("default");
+      if (props.inverseHover) setState("hover");
       // //console.log('defualt')
     }
     // //console.log("EFFECT RUNNING");
-  }, [active]);
+  }, [active, props.dropElement, props.inverseHover]);
   const handleMouseEnter = () => {
-    if (!active || props.dropElement) setState("hover");
+    if (!active || props.dropElement) {
+      setState("hover");
+      if (props.inverseHover) setState("default");
+    }
   };
 
   const handleChangeRoute = () => {
     setState("default");
+    if (props.inverseHover) setState("hover");
   };
 
   const handleMouseLeave = () => {
-    if (!active || props.dropElement) setState("default");
+    if (!active || props.dropElement) {
+      setState("default");
+      if (props.inverseHover) setState("hover");
+    }
   };
 
   // //console.log("Rendering")
@@ -34,8 +42,8 @@ const NavItem = (props) => {
   return (
     <li
       className={`${classes["nav-item"]} ${classes[state]} ${
-        props.className || ""
-      }`}
+        props.inverseHover ? classes["inverse-hover"] : ""
+      } ${props.className || ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleChangeRoute}

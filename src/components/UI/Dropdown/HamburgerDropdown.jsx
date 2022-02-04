@@ -1,7 +1,6 @@
 import NavItem from "../NavBar/NavItem";
 import Collapse from "./Collapse";
 import Dropdown from "./DropDown";
-import DropDownButton from "./DropdownButton";
 import classes from "./HamburgerDropdown.module.css";
 
 const HamburgerDropdown = (props) => {
@@ -18,8 +17,8 @@ const HamburgerDropdown = (props) => {
         menuId={props.id}
         elements={
           <>
-            <NavItem destPath="/groups">My Groups</NavItem>
-            <NavItem destPath="/groups/chat">Chat</NavItem>
+            <NavItem destPath="/groups" inverseHover dropElement>My Groups</NavItem>
+            <NavItem destPath="/groups/chat" inverseHover dropElement>Chat</NavItem>
           </>
         }
       >

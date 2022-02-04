@@ -10,14 +10,16 @@
   text-decoration: none;
   height: 100%;
   /* line-height: 2rem; */
-  line-height: 96px;
   padding: 0 .7rem;
   /* background-color: var(--color-primary); */
   color: var(--color-tertiary);
 }
 
-.hover a {
+.hover {
   background-color: var(--color-tertiary);
+}
+
+.hover a {
   color: var(--color-primary);
 }
 
@@ -38,4 +40,8 @@
   height: 2px;
   background-color: var(--color-tertiary);
   border-radius: 3px;
+}
+
+.inverse-hover:hover a {
+  background-color: var(--color-secondary);
 }

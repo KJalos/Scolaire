@@ -1,8 +1,6 @@
 .profile-btn {
-  align-self: center;
   margin-left: 1rem;
   padding: 0;
-  align-self: stretch;
   fill: var(--color-tertiary);
 }
 

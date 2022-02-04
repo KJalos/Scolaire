@@ -1,5 +1,4 @@
 import React, {
-  useCallback,
   useContext,
   useEffect,
   useRef,
@@ -15,13 +14,8 @@ const DropDownButton = (props) => {
   const ref = useRef();
   const profileBtnRef = useRef();
   const menuCtx = useContext(MenuContext);
-  const {
-    whitelistElementRec,
-    blacklistElementRec,
-    show,
-    hideAll,
-    cleanupMenu,
-  } = menuCtx;
+  const { whitelistElementRec, show, hideAll, cleanupMenu, setPosition } =
+    menuCtx;
   const menu = menuCtx.menus.find((menu) => menu.id === props.menuId);
   // //console.log(menu);
   // //console.log(props.menuId);
@@ -41,7 +35,15 @@ const DropDownButton = (props) => {
         hideAll(menu.id);
       } else {
         // eg top of drop to bottom of button => bottom-top
-        show(menu.id, {
+        show(menu.id);
+      }
+    };
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (menuInitialized) {
+        hideAll();
+        setPosition(props.menuId, {
           left:
             ref.current.getBoundingClientRect().left +
             props.dropdownOffset.left,
@@ -57,6 +59,25 @@ const DropDownButton = (props) => {
         });
       }
     };
+
+    const timeout = setTimeout(() => {
+      window.addEventListener("resize", updateSize);
+      updateSize();
+    }, 500);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("resize", updateSize);
+    };
+  }, [
+    hideAll,
+    menuInitialized,
+    props.dropdownOffset.bottom,
+    props.dropdownOffset.left,
+    props.dropdownOffset.right,
+    props.dropdownOffset.top,
+    props.menuId,
+    setPosition,
+  ]);
 
   useEffect(() => {
     if (!elementsWhitelisted && menuInitialized) {
@@ -108,7 +129,7 @@ const DropDownButton = (props) => {
       ref={ref}
       className={`${classes["drop-btn"]} ${
         props.profile ? profileBtnClasses["profile-btn"] : ""
-      } ${props.className}`}
+      } ${props.hamburger ? classes.hamburger : ""} ${props.className || ""}`}
       onClick={handleClick}
       id={props.id}
     >

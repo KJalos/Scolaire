@@ -26,3 +26,9 @@
   background-color: var(--color-primary);
   color: var(--color-tertiary);
 }
+
+.hamburger,.hamburger:hover {
+  padding: 0;
+  background-color: var(--color-primary);
+  height: 100% !important;
+}

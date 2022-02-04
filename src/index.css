@@ -10,10 +10,6 @@
   --color-light-bg-aplha:rgba(241, 241, 243,.5);
 }
 
-#root {
-  height: 100vh;
-}
-
 * {
   box-sizing: border-box;
 }

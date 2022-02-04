@@ -3,31 +3,44 @@ import React, { useReducer } from "react";
 const initState = {
   menus: [],
   register: (menu) => {},
-  show: (id, position) => {},
+  setPosition: (menuId, position) => {},
+  show: (id) => {},
   hide: (id) => {},
   hideAll: () => {},
   deregister: (id) => {},
   getMenu: (id) => {},
   whitelistElement: (menuId, element) => {},
-  blacklistElement: (menuId, element) => {},
   whitelistElementRec: (menuId, element) => {},
+  blacklistElement: (menuId, element) => {},
   blacklistElementRec: (menuId, element) => {},
   cleanupMenu: (menuId) => {},
 };
 
 const MenuContext = React.createContext(initState);
-const [REGISTER, SHOW, HIDE, HIDE_ALL, DEREGISTER, ADD_EXEMPT, REMOVE_EXEMPT] =
-  [
-    "REGISTER",
-    "SHOW",
-    "HIDE",
-    "HIDE_ALL",
-    "DEREGISTER",
-    "ADD_EXEMPT",
-    "REMOVE_EXEMPT",
-  ];
+const [
+  REGISTER,
+  SHOW,
+  SET_POSITION,
+  HIDE,
+  HIDE_ALL,
+  DEREGISTER,
+  ADD_EXEMPT,
+  REMOVE_EXEMPT,
+  CLEAN,
+] = [
+  "REGISTER",
+  "SHOW",
+  "SET_POSITION",
+  "HIDE",
+  "HIDE_ALL",
+  "DEREGISTER",
+  "ADD_EXEMPT",
+  "REMOVE_EXEMPT",
+  "CLEAN",
+];
 
 const menuReducer = (state, action) => {
+  // console.log(action.type, "\nPayload:", action);
   switch (action.type) {
     case REGISTER:
       return {
@@ -39,13 +52,21 @@ const menuReducer = (state, action) => {
       return {
         ...state,
         menus: state.menus.map((menu) => {
-          return {
+          const updatedMenu = {
             ...menu,
             visible: menu.id === action.id || menu.visible,
-            position:
-              menu.id === action.id
-                ? action.position || menu.position
-                : menu.position,
+          };
+          return updatedMenu;
+        }),
+      };
+    case SET_POSITION:
+      // console.log(action.type, "\nPayload:", action);
+      return {
+        ...state,
+        menus: state.menus.map((menu) => {
+          return {
+            ...menu,
+            position: menu.id === action.menuId ? action.position : menu.position,
           };
         }),
       };
@@ -99,6 +120,25 @@ const menuReducer = (state, action) => {
           return menu;
         }),
       };
+    case CLEAN:
+      return {
+        ...state,
+        menus: state.menus.map((menu) => {
+          console.log("Clean", action.menuId);
+          console.log("Whitelist before", menu.whitelist);
+          return {
+            ...menu,
+            whitelist:
+              menu.id === action.menuId
+                ? menu.whitelist.filter((whitelistedElement) => {
+                    let exists = true;
+                    console.log(document.children);
+                    return exists;
+                  })
+                : menu.whitelist,
+          };
+        }),
+      };
     default:
       return state;
   }
@@ -108,14 +148,15 @@ export function MenuContextProvider(props) {
   const [contextValue, dispatch] = useReducer(menuReducer, {
     menus: [],
     register: handleRegister,
+    setPosition: handleSetPosition,
     show: handleShow,
     hide: handleHide,
     hideAll: handleHideAll,
     deregister: handleDeregister,
     getMenu: handleGetMenu,
     whitelistElement: handleWhitelistElement,
-    blacklistElement: handleBlacklistElement,
     whitelistElementRec: handleWhitelistElementRec,
+    blacklistElement: handleBlacklistElement,
     blacklistElementRec: handleBlacklistElementRec,
     cleanupMenu: handleCleanupMenu,
   });
@@ -127,11 +168,10 @@ export function MenuContextProvider(props) {
     });
   }
 
-  function handleShow(id, position) {
+  function handleShow(id) {
     dispatch({
       type: SHOW,
       id,
-      position,
     });
   }
 
@@ -206,26 +246,36 @@ export function MenuContextProvider(props) {
 
   function handleCleanupMenu(menuId) {
     const menu = contextValue.menus.find((menu) => menuId === menu.id);
-    // console.log(contextValue);
-    // console.log(menuId,menu);
-    for (let i = 0; i < menu.whitelist.length; i++) {
-      let elementFoundInDoc = false;
-      (function checkChildren(element) {
-        const children = element.children;
-        if (children) {
-          for (let j = 0; j < children.length; j++) {
-            checkChildren(children[j]);
-          }
-        }
-        if (element === menu.whitelist[i]) {
-          elementFoundInDoc = true;
-        }
-      })(document);
 
-      if (!elementFoundInDoc) {
-        handleBlacklistElementRec(menuId, menu.whitelist[i]);
+    // console.log(menuId,menu);
+    // Temp fix for empty menus list when cleanup is run
+    if (contextValue.menus.length > 0)
+      for (let i = 0; i < menu.whitelist.length; i++) {
+        let elementFoundInDoc = false;
+        (function checkChildren(element) {
+          const children = element.children;
+          if (children) {
+            for (let j = 0; j < children.length; j++) {
+              checkChildren(children[j]);
+            }
+          }
+          if (element === menu.whitelist[i]) {
+            elementFoundInDoc = true;
+          }
+        })(document);
+
+        if (!elementFoundInDoc) {
+          handleBlacklistElementRec(menuId, menu.whitelist[i]);
+        }
       }
-    }
+  }
+
+  function handleSetPosition(menuId, position) {
+    dispatch({
+      type: SET_POSITION,
+      menuId,
+      position,
+    });
   }
 
   return (
