@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useHttp from "../../hooks/use-http";
 import Container from "../Layout/Container";
-import SearchBar from "../UI/Forms/SearchBar";
+import InputBar from "../UI/Forms/InputBar";
 import GroupList from "./GroupList";
 
 const MyGroups = () => {
@@ -30,7 +30,7 @@ const MyGroups = () => {
       <h2>My groups</h2>
       {/* Search Bar */}
       <form>
-        <SearchBar
+        <InputBar
           placeholder="Search my groups..."
           buttonText={<i className="fas fa-search"></i>}
         />

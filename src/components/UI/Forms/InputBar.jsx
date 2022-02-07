@@ -1,5 +1,5 @@
 import Input from "./Input";
-import classes from "./SearchBar.module.css";
+import classes from "./InputBar.module.css";
 
 const SearchBar = (props) => {
   return (

@@ -1,8 +1,8 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { useState } from "react/cjs/react.development";
 import useHttp from "../../hooks/use-http";
 import Input from "../UI/Forms/Input";
-import SearchBar from "../UI/Forms/SearchBar";
+import InputBar from "../UI/Forms/InputBar";
 import classes from "./NewScheduleItem.module.css";
 
 const NewScheduleItem = (props) => {
@@ -57,7 +57,7 @@ const NewScheduleItem = (props) => {
           onChange={handleTimeChange}
           value={enteredTime}
         />
-        <SearchBar
+        <InputBar
           className={classes["description-button-container"]}
           placeholder="Add new Task"
           onChange={handleDescriptionChange}

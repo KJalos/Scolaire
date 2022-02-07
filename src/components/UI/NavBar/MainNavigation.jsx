@@ -87,7 +87,7 @@ const MainNavigation = () => {
               Schedule
             </NavItem>
             {/* <NavItem destPath="/groups" active={activeRoute==='/groups'} onChangeRoute={handleChangeRoute}>Groups</NavItem> */}
-            <DropDownButton
+            {/* <DropDownButton
               id={"groupsDropDownBtn"}
               menuId={GROUP_MENU_ID}
               active={
@@ -100,7 +100,7 @@ const MainNavigation = () => {
               }}
             >
               Groups&nbsp;<span className={classes.caret}>&#9660;</span>
-            </DropDownButton>
+            </DropDownButton> */}
             <NavItem destPath="/contact-us">Contact&nbsp;us</NavItem>
             <DropDownButton
               profile

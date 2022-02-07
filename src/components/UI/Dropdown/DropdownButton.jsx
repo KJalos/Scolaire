@@ -1,11 +1,6 @@
-import React, {
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import MenuContext from "../../../store/menu-context";
-import UserAvatar from "../../Profile/UserAvatar";
+import Avatar from "../../Profile/Avatar";
 import classes from "./DropdownButton.module.css";
 import profileBtnClasses from "./ProfileButton.module.css";
 
@@ -133,7 +128,7 @@ const DropDownButton = (props) => {
       onClick={handleClick}
       id={props.id}
     >
-      {props.profile ? <UserAvatar ref={profileBtnRef} /> : props.children}
+      {props.profile ? <Avatar ref={profileBtnRef} /> : props.children}
     </button>
   );
 };

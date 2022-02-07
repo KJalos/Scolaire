@@ -15,12 +15,12 @@ const Footer = () => {
           <NavItem destPath={"/schedule"} dropElement>
             Schedule
           </NavItem>
-          <NavItem destPath={"/groups"} dropElement>
+          {/* <NavItem destPath={"/groups"} dropElement>
             My Groups
           </NavItem>
           <NavItem destPath={"/groups/chat"} dropElement>
             Group Chat
-          </NavItem>
+          </NavItem> */}
           <NavItem destPath={"/contact-us"} dropElement>
             Contact us
           </NavItem>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import useHttp from "../../hooks/use-http";
-import SearchBar from "../UI/Forms/SearchBar";
+import InputBar from "../UI/Forms/InputBar";
 import GroupList from "./GroupList";
 
 import classes from "./FindGroups.module.css";
@@ -31,7 +31,7 @@ const FindGroups = (props) => {
       <h2>Find groups</h2>
       {/* Search Bar */}
       <form>
-        <SearchBar
+        <InputBar
           placeholder="Find new groups..."
           buttonText={<i className="fas fa-search"></i>}
         />

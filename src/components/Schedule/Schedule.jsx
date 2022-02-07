@@ -3,7 +3,7 @@ import useHttp from "../../hooks/use-http";
 import Container from "../Layout/Container";
 import NewScheduleItem from "./NewScheduleItem";
 import ScheduleList from "./ScheduleList";
-import defaultPageStyles from "../Layout/DefaultPageStyles.module.css"
+import defaultPageStyles from "../Layout/DefaultPageStyles.module.css";
 
 const Schedule = (props) => {
   const { sendRequest, data, isLoading, err } = useHttp();
