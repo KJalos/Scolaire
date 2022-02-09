@@ -4,6 +4,11 @@
   color: var(--color-primary);
 }
 
+.form-control label {
+  font-weight: 600;
+  margin-bottom: .3rem;
+}
+
 .form-control input,
 .form-control textarea {
   border: none;
@@ -21,7 +26,7 @@
 
 .form-control input:focus,
 .form-control textarea:focus {
-  outline: 1px solid var(--color-primary);
+  outline: 2px solid var(--color-primary);
 }
 
 .form-control textarea::placeholder,

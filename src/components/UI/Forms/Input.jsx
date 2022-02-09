@@ -5,8 +5,12 @@ const Input = (props) => {
     id: props.id,
     placeholder: props.placeholder,
     onChange: props.onChange,
-    value: props.value,
+    name:props.name
   };
+
+  if (props.value) {
+    inputProps.value=props.value;
+  }
   return (
     <div className={`${classes["form-control"]} ${props.className}`}>
       <label htmlFor={props.id}>{props.label}</label>
